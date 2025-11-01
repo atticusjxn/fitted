@@ -16,7 +16,9 @@
     "test": "vitest run",
     "dev": "npm run dev --workspaces",
     "dev:api": "npm run dev --workspace @fitted/api",
-    "dev:admin": "npm run dev --workspace @fitted/admin"
+    "dev:admin": "npm run dev --workspace @fitted/admin",
+    "dev:checkout": "npm run dev --workspace @fitted/checkout",
+    "build:checkout": "npm run build --workspace @fitted/checkout"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -26,6 +28,7 @@
     "@types/node": "^24.9.2",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
+    "@vitejs/plugin-react-swc": "^4.2.0",
     "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.5.0",
@@ -35,5 +38,8 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2",
     "vitest": "^4.0.6"
+  },
+  "dependencies": {
+    "lucide-react": "^0.552.0"
   }
 }

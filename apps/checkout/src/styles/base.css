@@ -1,0 +1,384 @@
+:root {
+  color-scheme: light;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  --color-primary: #0f766e;
+  --color-primary-hover: #155e58;
+  --color-secondary: #e2e8f0;
+  --color-border: #d0d7e3;
+  --color-error: #b91c1c;
+  --color-background: #ffffff;
+  --color-muted: #64748b;
+  --shadow-elevation: 0 20px 45px rgba(15, 118, 110, 0.12);
+}
+
+body {
+  margin: 0;
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.checkout-root {
+  min-height: 100vh;
+  padding: 24px 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-card {
+  width: min(100%, 420px);
+  background-color: var(--color-background);
+  border-radius: 24px;
+  border: 1px solid rgba(15, 118, 110, 0.08);
+  box-shadow: var(--shadow-elevation);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.form-subtitle {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.form-helper {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  padding: 14px 16px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.2);
+}
+
+.form-input--error {
+  border-color: var(--color-error);
+}
+
+.form-error {
+  color: var(--color-error);
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.helper-text {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.form-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 480px) {
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.button {
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 14px 20px;
+  min-height: 48px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button--primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.button--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.button--secondary {
+  background-color: var(--color-secondary);
+  color: #0f172a;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.form-actions .button {
+  flex: 1;
+  width: auto;
+}
+
+.tradie-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tradie-card {
+  display: block;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.tradie-card--selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 28px rgba(15, 118, 110, 0.18);
+}
+
+.tradie-card--recommended {
+  border-width: 2px;
+  border-color: var(--color-primary);
+  box-shadow: 0 16px 46px rgba(15, 118, 110, 0.25);
+}
+
+.tradie-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tradie-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.tradie-card__title {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.tradie-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+}
+
+.icon-star {
+  color: #f59e0b;
+}
+
+.tradie-card__reviews {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.tradie-card__badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(15, 118, 110, 0.12);
+  border-radius: 999px;
+  padding: 4px 10px;
+  width: fit-content;
+}
+
+.tradie-card__meta {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.tradie-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tag {
+  background: rgba(15, 118, 110, 0.12);
+  color: var(--color-primary);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+}
+
+.tradie-card__traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.trait {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.urgency-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.chip--selected {
+  border-color: var(--color-primary);
+  background: rgba(15, 118, 110, 0.12);
+}
+
+.hidden-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.input-with-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-meta {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.form-alert {
+  background-color: rgba(185, 28, 28, 0.12);
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  color: var(--color-error);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+}
+
+.success-card {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 18px 20px;
+  background: rgba(15, 118, 110, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.success-lead {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 360px) {
+  .form-card {
+    padding: 24px 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+}
