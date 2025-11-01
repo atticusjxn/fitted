@@ -1,0 +1,30 @@
+{
+  "name": "@fitted/admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fitted admin and dashboard app",
+  "type": "module",
+  "scripts": {
+    "dev": "remix dev",
+    "build": "remix build",
+    "start": "remix-serve ./build/index.js",
+    "lint": "eslint \"app/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "@remix-run/node": "^2.13.1",
+    "@remix-run/react": "^2.13.1",
+    "isbot": "^4.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.13.1",
+    "@remix-run/serve": "^2.13.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
