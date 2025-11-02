@@ -5,6 +5,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-vibrant-electrics',
       name: 'Vibrant Electrics',
+      phone: '+61 3 9112 4438',
       rating: 4.8,
       reviewCount: 132,
       distanceKm: 4.2,
@@ -17,6 +18,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-hangright',
       name: 'Hang Right Installations',
+      phone: '+61 3 8568 2231',
       rating: 4.6,
       reviewCount: 96,
       distanceKm: 6.1,
@@ -29,6 +31,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-precision-plumbers',
       name: 'Precision Plumbers & Fitters',
+      phone: '+61 3 7002 8890',
       rating: 4.9,
       reviewCount: 188,
       distanceKm: 5.4,
@@ -43,6 +46,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-zen-installations',
       name: 'Zen Installations',
+      phone: '+61 3 8124 6670',
       rating: 4.7,
       reviewCount: 74,
       distanceKm: 3.8,
@@ -55,6 +59,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-skyline-sparks',
       name: 'Skyline Sparks',
+      phone: '+61 3 9088 4511',
       rating: 4.5,
       reviewCount: 58,
       distanceKm: 7.3,
@@ -69,6 +74,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-eastside-electrics',
       name: 'Eastside Electrics',
+      phone: '+61 7 3111 2045',
       rating: 4.8,
       reviewCount: 142,
       distanceKm: 2.9,
@@ -81,6 +87,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-coorparoo-installations',
       name: 'Coorparoo Installations',
+      phone: '+61 7 3498 2210',
       rating: 4.7,
       reviewCount: 87,
       distanceKm: 4.1,
@@ -93,6 +100,7 @@ const MOCK_TRADIES: Record<string, Tradie[]> = {
     {
       id: 'tradie-brisbane-pro-fitters',
       name: 'Brisbane Pro Fitters',
+      phone: '+61 7 3521 9974',
       rating: 4.6,
       reviewCount: 101,
       distanceKm: 6.3,

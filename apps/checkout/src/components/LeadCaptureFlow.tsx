@@ -208,8 +208,8 @@ export function LeadCaptureFlow({ prefill }: LeadCaptureFlowProps) {
     void handlePostalSubmit(prefill.postalCode);
   }, [prefill?.postalCode, handlePostalSubmit]);
 
-  if (step === 'success' && leadId) {
-    return <SuccessStep leadId={leadId} onReset={handleReset} />;
+  if (step === 'success' && leadId && selectedInstaller) {
+    return <SuccessStep leadId={leadId} tradie={selectedInstaller} onReset={handleReset} />;
   }
 
   if (step === 'tradies') {

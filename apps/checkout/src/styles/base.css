@@ -371,6 +371,11 @@ body {
   font-size: 0.95rem;
 }
 
+.success-card--friendly {
+  background: rgba(15, 118, 110, 0.08);
+  gap: 16px;
+}
+
 .success-badge {
   display: inline-flex;
   align-items: center;
@@ -383,6 +388,72 @@ body {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.9rem;
   margin: 0;
+}
+
+.success-reference {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px dashed rgba(15, 118, 110, 0.4);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.contact-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-card__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+.contact-card__value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.contact-card__value:hover {
+  text-decoration: underline;
+}
+
+.contact-card__hint {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.contact-card__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid rgba(15, 118, 110, 0.4);
+}
+
+.button--ghost:hover {
+  background: rgba(15, 118, 110, 0.08);
+}
+
+.button--ghost:focus-visible {
+  outline: 2px solid rgba(15, 118, 110, 0.35);
+  outline-offset: 2px;
 }
 
 .experience-shell {

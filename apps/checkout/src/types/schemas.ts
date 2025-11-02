@@ -45,6 +45,10 @@ export const tradieSchema = z.object({
   reviewCount: z.number().min(0),
   distanceKm: z.number().min(0),
   specialties: z.array(z.string()).nonempty(),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^[\d\s+()-]{8,}$/, 'Installer phone number must include at least 8 digits'),
   insured: z.boolean().default(true),
   licensed: z.boolean().default(true),
   responseTime: z.string().optional(),
