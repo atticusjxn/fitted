@@ -18,7 +18,7 @@
       <header class="hero">
         <nav class="top-nav" aria-label="Primary navigation">
           <a class="brand brand--solo" href="#top">
-            <img src="./assets/images/fitted-logo-white.png" alt="Fitted" />
+            <img src="./assets/images/fittedlogoblack.png" alt="Fitted" />
           </a>
           <button
             class="hamburger nav-trigger"
@@ -43,7 +43,7 @@
           <div class="nav-overlay__inner">
             <div class="nav-overlay__header">
               <a class="brand brand--overlay" href="#top">
-                <img src="./assets/images/fitted-logo-white.png" alt="Fitted" />
+                <img src="./assets/images/fittedlogoblack.png" alt="Fitted" />
               </a>
               <button class="hamburger nav-overlay__close" type="button" aria-label="Close navigation">
                 <span class="hamburger__bar"></span>
@@ -107,24 +107,23 @@
               </div>
             </dl>
           </div>
-          <div class="hero-preview" aria-hidden="true">
+          <div class="hero-preview">
             <div class="checkout-card">
               <header>
                 <div>
                   <p class="checkout-label">Cart summary</p>
-                  <h2>Crystal Chandelier</h2>
+                  <h2><span data-product-name>Pendant Light</span></h2>
                   <span class="price">$899</span>
                 </div>
                 <span class="delivery">Ships in 3-5 days</span>
               </header>
               <section class="installation">
-                <div class="installation-header">
-                  <div>
-                    <p class="installation-eyebrow">Need installation?</p>
-                    <h3>Add a licensed pro in one click</h3>
+                  <div class="installation-header">
+                    <div>
+                      <p class="installation-eyebrow">Need installation?</p>
+                      <h3>Add a licensed pro in one click</h3>
+                    </div>
                   </div>
-                  <span class="badge">New</span>
-                </div>
                 <div class="postcode-field">
                   <label for="hero-postcode">Postcode</label>
                   <div class="input">
@@ -196,11 +195,27 @@
                   </p>
                 </div>
                 <div class="how-card how-card--purchase">
+                  <figure class="product-shot product-shot--inline">
+                    <img
+                      src="./assets/images/pendant-light.png"
+                      data-product-image
+                      loading="lazy"
+                      data-alt-template="{product} featured in online store listing"
+                      alt="Pendant light product listing"
+                    />
+                    <figcaption>
+                      <div>
+                        <strong data-product-name>Pendant Light</strong>
+                        <span>Beacon &amp; Co Lighting</span>
+                      </div>
+                      <span class="product-shot__price">$899</span>
+                    </figcaption>
+                  </figure>
                   <div class="purchase-header">
                     <span class="badge badge--ghost">Checkout</span>
                     <span class="purchase-total">$899</span>
                   </div>
-                  <p class="purchase-product">Crystal Chandelier · Beacon &amp; Co Lighting</p>
+                  <p class="purchase-product"><span data-product-name>Pendant Light</span> · Beacon &amp; Co Lighting</p>
                   <div class="purchase-meta">
                     <span>Visa ending ••48</span>
                     <span>Ship in 3–5 days</span>
@@ -223,7 +238,6 @@
                 <div class="how-card how-card--match">
                   <div class="match-header">
                     <span class="match-eyebrow">Need installation?</span>
-                    <span class="chip chip--match">3 pros found</span>
                   </div>
                   <div class="match-postcode">
                     <i data-lucide="map-pin"></i>
@@ -266,13 +280,12 @@
                 <div class="how-card how-card--notify">
                   <div class="notify-phone">
                     <header>
-                      <span class="dot dot--green"></span>
                       <span>Fitted Lead</span>
                       <i data-lucide="smartphone"></i>
                     </header>
                     <div class="notify-message">
                       <p><strong>New install request</strong></p>
-                      <p>Crystal Chandelier · Alex Jordan</p>
+                      <p><span data-product-name>Pendant Light</span> · Alex Jordan</p>
                       <p>24 Aug · 10:00 · North Sydney</p>
                       <button type="button">Accept job</button>
                     </div>
@@ -293,22 +306,21 @@
             </p>
           </div>
           <div class="demo-preview">
-            <div class="demo-checkout">
-              <header>
-                <div>
-                  <p class="checkout-label">Checkout</p>
-                  <h3>Crystal Chandelier</h3>
-                </div>
-                <span class="price">$899</span>
-              </header>
-              <div class="demo-installation">
-                <div class="demo-top">
+              <div class="demo-checkout">
+                <header>
                   <div>
-                    <p class="installation-eyebrow">Need installation?</p>
-                    <h4>Connect with a licensed electrician near you</h4>
+                    <p class="checkout-label">Checkout</p>
+                    <h3><span data-product-name>Pendant Light</span></h3>
                   </div>
-                  <span class="badge">High-intent</span>
-                </div>
+                  <span class="price">$899</span>
+                </header>
+                <div class="demo-installation">
+                  <div class="demo-top">
+                    <div>
+                      <p class="installation-eyebrow">Need installation?</p>
+                      <h4>Connect with a licensed electrician near you</h4>
+                    </div>
+                  </div>
                 <div class="demo-postcode">
                   <label for="demo-postcode">Postcode</label>
                   <div class="input">
@@ -653,7 +665,7 @@
 
       <footer class="site-footer">
         <div class="footer-brand">
-          <img src="./assets/images/fitted-logo-white.png" alt="Fitted" />
+          <img src="./assets/images/fittedlogoblack.png" alt="Fitted" />
           <p>Installation services built into checkout for Australian merchants.</p>
         </div>
         <ul class="footer-links">
