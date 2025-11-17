@@ -2,7 +2,10 @@ import Fastify, { FastifyInstance } from 'fastify';
 import helmet from '@fastify/helmet';
 import cors from '@fastify/cors';
 import sensible from '@fastify/sensible';
+import rawBody from 'fastify-raw-body';
 import { healthRoutes } from './routes/health.js';
+import { billingRoutes } from './routes/billing.js';
+import { stripeWebhookRoutes } from './routes/stripe-webhook.js';
 
 export function buildServer(): FastifyInstance {
   const app = Fastify({
@@ -11,6 +14,11 @@ export function buildServer(): FastifyInstance {
     }
   });
 
+  void app.register(rawBody, {
+    field: 'rawBody',
+    global: false,
+    runFirst: true
+  });
   void app.register(helmet);
   void app.register(cors, {
     origin: true
@@ -18,6 +26,8 @@ export function buildServer(): FastifyInstance {
   void app.register(sensible);
 
   void app.register(healthRoutes, { prefix: '/api' });
+  void app.register(billingRoutes, { prefix: '/api' });
+  void app.register(stripeWebhookRoutes, { prefix: '/api' });
 
   return app;
 }
