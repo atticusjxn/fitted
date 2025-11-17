@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Fitted admin and dashboard app",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "remix dev",
     "build": "remix build",

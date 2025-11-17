@@ -7,12 +7,14 @@ type Settings = {
   businessName: string;
   contactEmail: string;
   contactPhone: string;
-  stripeCustomerId: string;
-  paymentMethodSummary?: string;
-  leadFeeCents: number;
-  autoChargeEnabled: boolean;
-  notifyEmail: boolean;
-  notifySms: boolean;
+  appEnabled: boolean;
+  industry: string;
+  productTypes: string[];
+};
+
+type ProductGroup = {
+  type: string;
+  products: { id: number; title: string; handle: string }[];
 };
 
 // In-memory placeholder until real persistence is wired.
@@ -20,16 +22,34 @@ let settingsStore: Settings = {
   businessName: 'Demo Merchant',
   contactEmail: 'merchant@example.com',
   contactPhone: '+61 400 000 000',
-  stripeCustomerId: 'cus_TR9fDNjpOpqyar',
-  paymentMethodSummary: 'Visa •••• 4242',
-  leadFeeCents: 2500,
-  autoChargeEnabled: true,
-  notifyEmail: true,
-  notifySms: false
+  appEnabled: true,
+  industry: 'home-improvement',
+  productTypes: ['lighting', 'appliances', 'furniture']
 };
 
-export async function loader(_args: LoaderFunctionArgs) {
-  return json({ settings: settingsStore });
+export async function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const shop = url.searchParams.get('shop') ?? 'demo.myshopify.com';
+  const origin = url.origin;
+
+  let groups: ProductGroup[] = [
+    { type: 'Lighting & fixtures', products: [] },
+    { type: 'Appliances', products: [] },
+    { type: 'Furniture & assembly', products: [] }
+  ];
+
+  try {
+    const res = await fetch(`${origin}/api/shopify/products?shop=${encodeURIComponent(shop)}`);
+    if (res.ok) {
+      const data = (await res.json()) as { grouped: Record<string, { id: number; title: string; handle: string }[]> };
+      groups = Object.entries(data.grouped).map(([type, products]) => ({ type, products }));
+    }
+  } catch (err) {
+    console.error('Failed to load Shopify products', err);
+  }
+
+  const productTypes = groups.map((g) => g.type);
+  return json({ settings: settingsStore, shop, groups, productTypes });
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -41,27 +61,19 @@ export async function action({ request }: ActionFunctionArgs) {
       ...settingsStore,
       businessName: String(form.get('businessName') ?? settingsStore.businessName),
       contactEmail: String(form.get('contactEmail') ?? settingsStore.contactEmail),
-      contactPhone: String(form.get('contactPhone') ?? settingsStore.contactPhone)
+      contactPhone: String(form.get('contactPhone') ?? settingsStore.contactPhone),
+      appEnabled: form.get('appEnabled') === 'on',
+      industry: String(form.get('industry') ?? settingsStore.industry)
     };
   }
 
-  if (intent === 'update-billing') {
-    settingsStore = {
-      ...settingsStore,
-      stripeCustomerId: String(form.get('stripeCustomerId') ?? settingsStore.stripeCustomerId),
-      paymentMethodSummary: String(
-        form.get('paymentMethodSummary') ?? settingsStore.paymentMethodSummary ?? ''
-      )
-    };
-  }
+  if (intent === 'update-products') {
+    const all = ['lighting', 'appliances', 'furniture', 'bathroom', 'outdoor', 'custom'];
+    const selected = all.filter((id) => form.get(id) === 'on');
 
-  if (intent === 'update-leads') {
     settingsStore = {
       ...settingsStore,
-      leadFeeCents: Number(form.get('leadFeeCents') ?? settingsStore.leadFeeCents),
-      autoChargeEnabled: form.get('autoChargeEnabled') === 'on',
-      notifyEmail: form.get('notifyEmail') === 'on',
-      notifySms: form.get('notifySms') === 'on'
+      productTypes: selected.length ? selected : settingsStore.productTypes
     };
   }
 
@@ -78,7 +90,7 @@ function SectionCard({ title, children }: { title: string; children: React.React
 }
 
 export default function SettingsRoute() {
-  const { settings } = useLoaderData<typeof loader>();
+  const { settings, groups } = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
 
   return (
@@ -97,10 +109,19 @@ export default function SettingsRoute() {
           </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6">
           <SectionCard title="Business Profile">
             <Form method="post" className="space-y-4">
               <input type="hidden" name="intent" value="update-profile" />
+              <label className="flex items-center gap-2 text-sm">
+                <input
+                  type="checkbox"
+                  name="appEnabled"
+                  defaultChecked={settings.appEnabled}
+                  className="h-4 w-4 rounded border-slate-300 text-emerald-600"
+                />
+                <span>Enable Fitted checkout app</span>
+              </label>
               <label className="block space-y-1">
                 <span className="text-xs uppercase tracking-wide text-slate-500">Business name</span>
                 <input
@@ -126,6 +147,20 @@ export default function SettingsRoute() {
                   className="w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
                 />
               </label>
+              <label className="block space-y-1">
+                <span className="text-xs uppercase tracking-wide text-slate-500">Industry</span>
+                <select
+                  name="industry"
+                  defaultValue={settings.industry}
+                  className="w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+                >
+                  <option value="home-improvement">Home improvement</option>
+                  <option value="appliances">Appliances</option>
+                  <option value="lighting">Lighting</option>
+                  <option value="furniture">Furniture</option>
+                  <option value="custom">Other / Custom</option>
+                </select>
+              </label>
               <button
                 type="submit"
                 className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-emerald-700"
@@ -135,99 +170,41 @@ export default function SettingsRoute() {
             </Form>
           </SectionCard>
 
-          <SectionCard title="Billing & Payments">
-            <Form method="post" className="space-y-4">
-              <input type="hidden" name="intent" value="update-billing" />
-              <label className="block space-y-1">
-                <span className="text-xs uppercase tracking-wide text-slate-500">Stripe customer ID</span>
-                <input
-                  name="stripeCustomerId"
-                  defaultValue={settings.stripeCustomerId}
-                  className="w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
-                />
-              </label>
-              <label className="block space-y-1">
-                <span className="text-xs uppercase tracking-wide text-slate-500">Default payment method</span>
-                <input
-                  name="paymentMethodSummary"
-                  defaultValue={settings.paymentMethodSummary}
-                  className="w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
-                  placeholder="e.g., Visa •••• 4242"
-                />
-              </label>
+          <SectionCard title="Products eligible for installation">
+            <Form method="post" className="space-y-3">
+              <input type="hidden" name="intent" value="update-products" />
+              <p className="text-sm text-slate-600">
+                Select the product categories where you want the "Need installation?" prompt to show.
+              </p>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {groups.map((group) => {
+                  const id = group.type;
+                  return (
+                    <label
+                      key={id}
+                      className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
+                    >
+                      <input
+                        type="checkbox"
+                        name={id}
+                        defaultChecked={settings.productTypes.includes(id)}
+                        className="h-4 w-4 rounded border-slate-300 text-emerald-600"
+                      />
+                      <span>{id}</span>
+                    </label>
+                  );
+                })}
+              </div>
               <p className="text-xs text-slate-500">
-                This ties to your saved card for auto-charging lead fees.
+                Synced from your Shopify products (by product type). All checked types will show the install prompt.
               </p>
               <button
                 type="submit"
                 className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-emerald-700"
               >
-                Save billing
+                Save product eligibility
               </button>
             </Form>
-          </SectionCard>
-
-          <SectionCard title="Lead Preferences">
-            <Form method="post" className="space-y-4">
-              <input type="hidden" name="intent" value="update-leads" />
-              <label className="block space-y-1">
-                <span className="text-xs uppercase tracking-wide text-slate-500">Lead fee (cents)</span>
-                <input
-                  type="number"
-                  name="leadFeeCents"
-                  defaultValue={settings.leadFeeCents}
-                  className="w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
-                  min={0}
-                />
-              </label>
-              <label className="flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  name="autoChargeEnabled"
-                  defaultChecked={settings.autoChargeEnabled}
-                  className="h-4 w-4 rounded border-slate-300 text-emerald-600"
-                />
-                <span>Auto-charge per lead</span>
-              </label>
-              <div className="space-y-2">
-                <p className="text-xs uppercase tracking-wide text-slate-500">Notifications</p>
-                <label className="flex items-center gap-2 text-sm">
-                  <input
-                    type="checkbox"
-                    name="notifyEmail"
-                    defaultChecked={settings.notifyEmail}
-                    className="h-4 w-4 rounded border-slate-300 text-emerald-600"
-                  />
-                  <span>Email</span>
-                </label>
-                <label className="flex items-center gap-2 text-sm">
-                  <input
-                    type="checkbox"
-                    name="notifySms"
-                    defaultChecked={settings.notifySms}
-                    className="h-4 w-4 rounded border-slate-300 text-emerald-600"
-                  />
-                  <span>SMS</span>
-                </label>
-              </div>
-              <button
-                type="submit"
-                className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-emerald-700"
-              >
-                Save lead prefs
-              </button>
-            </Form>
-          </SectionCard>
-
-          <SectionCard title="API Keys & Webhooks">
-            <div className="space-y-2 text-sm text-slate-600">
-              <p>Connect your API keys and webhook URLs when you’re ready to enable live flows.</p>
-              <ul className="list-disc space-y-1 pl-5 text-xs text-slate-500">
-                <li>Stripe webhook: /api/webhook/stripe (set STRIPE_WEBHOOK_SECRET when ready)</li>
-                <li>Checkout mock API: point to your Fastify `/api` base</li>
-                <li>Lead charge endpoint: POST /api/leads/:id/charge</li>
-              </ul>
-            </div>
           </SectionCard>
         </div>
       </div>

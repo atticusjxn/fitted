@@ -21,6 +21,7 @@ export default function App() {
     <html lang="en">
       <head>
         <Meta />
+        <script src="https://cdn.tailwindcss.com" />
         <Links />
       </head>
       <body>
