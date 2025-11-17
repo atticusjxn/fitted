@@ -1,5 +1,5 @@
 /** @type {import('@remix-run/dev').AppConfig} */
-export default {
+module.exports = {
   future: {
     v3_fetcherPersist: true,
     v3_relativeSplatPath: true,
@@ -7,6 +7,6 @@ export default {
   },
   ignoredRouteFiles: ['**/.*'],
   sourceMaps: true,
-  serverModuleFormat: 'esm',
-  serverBuildPath: 'build/index.js'
+  serverModuleFormat: 'cjs',
+  serverBuildPath: 'build/index.cjs'
 };
