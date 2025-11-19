@@ -16,6 +16,7 @@
     "@fastify/helmet": "^11.1.1",
     "@fastify/sensible": "^5.4.0",
     "@supabase/supabase-js": "^2.83.0",
+    "@vercel/node": "^5.5.6",
     "dotenv": "^16.4.5",
     "fastify": "^4.27.0",
     "fastify-raw-body": "^4.3.0",
