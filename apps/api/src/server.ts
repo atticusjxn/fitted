@@ -37,7 +37,7 @@ export function buildServer(): FastifyInstance {
         return callback(null, true);
       }
 
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS'), false);
     }
   });
   void app.register(sensible);
