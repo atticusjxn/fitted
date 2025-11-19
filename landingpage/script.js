@@ -158,4 +158,69 @@ document.addEventListener("DOMContentLoaded", () => {
       gridObserver.observe(howGrid);
     }
   }
+
+  const installerForm = document.getElementById("installer-signup-form");
+
+  if (installerForm) {
+    const statusEl = installerForm.querySelector(".form-status");
+    const submitButton = installerForm.querySelector("button[type='submit']");
+    const apiBase = (installerForm.dataset.apiBase || "").replace(/\/$/, "");
+    const endpoint = `${apiBase || ""}/installers`;
+
+    const setStatus = (message, tone = "neutral") => {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.dataset.tone = tone;
+    };
+
+    installerForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      setStatus("");
+      submitButton?.setAttribute("disabled", "true");
+
+      const formData = new FormData(installerForm);
+
+      const payload = {
+        fullName: (formData.get("fullName") || "").toString().trim(),
+        businessName: (formData.get("businessName") || "").toString().trim(),
+        email: (formData.get("email") || "").toString().trim(),
+        mobile: (formData.get("mobile") || "").toString().trim(),
+        phone: (formData.get("phone") || "").toString().trim(),
+        source: "landing"
+      };
+
+      if (!payload.fullName || !payload.businessName || !payload.mobile || !payload.phone) {
+        setStatus("Please complete all required fields.", "error");
+        submitButton?.removeAttribute("disabled");
+        return;
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(result.message || "Unable to submit right now. Please try again.");
+        }
+
+        installerForm.reset();
+        setStatus("Thanks—you're in. We'll reach out to place you in the marketplace.", "success");
+        installerForm.closest(".form-card")?.classList.add("is-success");
+        window.setTimeout(() => {
+          installerForm.closest(".form-card")?.classList.remove("is-success");
+        }, 1400);
+      } catch (error) {
+        setStatus(error.message, "error");
+      } finally {
+        submitButton?.removeAttribute("disabled");
+      }
+    });
+  }
 });

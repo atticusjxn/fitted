@@ -1629,6 +1629,155 @@ section {
   color: var(--text-primary);
 }
 
+.installer-intent {
+  padding: clamp(60px, 14vw, 140px) clamp(20px, 6vw, 60px);
+  background: linear-gradient(180deg, rgba(93, 102, 255, 0.08), rgba(93, 102, 255, 0));
+  border-radius: var(--radius-lg);
+}
+
+.installer-intent__content {
+  max-width: var(--content-wide);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(28px, 4vw, 48px);
+  align-items: stretch;
+}
+
+.installer-intent__copy {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.intent-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.intent-points li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 18px 38px -28px rgba(15, 23, 42, 0.15);
+}
+
+.intent-points i {
+  color: var(--accent);
+}
+
+.installer-intent__form {
+  align-self: stretch;
+}
+
+.form-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 4vw, 30px);
+  box-shadow: 0 30px 80px -40px rgba(15, 23, 42, 0.22);
+  display: grid;
+  gap: 16px;
+}
+
+.form-card.is-success {
+  animation: formGlow 1.4s ease;
+}
+
+.form-card__header {
+  display: grid;
+  gap: 6px;
+}
+
+.form-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+}
+
+#installer-signup-form {
+  display: grid;
+  gap: 14px;
+}
+
+#installer-signup-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+#installer-signup-form input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  font-size: 16px;
+  background: #f9fbff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#installer-signup-form input:focus-visible {
+  outline: none;
+  border-color: rgba(93, 102, 255, 0.7);
+  box-shadow: 0 0 0 4px rgba(93, 102, 255, 0.14);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.form-status {
+  min-height: 22px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-status[data-tone='success'] {
+  color: #15803d;
+}
+
+.form-status[data-tone='error'] {
+  color: #b42318;
+}
+
+.form-footnote {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.form-footnote i {
+  color: var(--accent);
+}
+
+@keyframes formGlow {
+  0% {
+    box-shadow: 0 30px 80px -40px rgba(15, 23, 42, 0.22), 0 0 0 0 rgba(93, 102, 255, 0.16);
+  }
+  40% {
+    box-shadow: 0 30px 80px -40px rgba(15, 23, 42, 0.22), 0 0 0 12px rgba(93, 102, 255, 0.12);
+  }
+  100% {
+    box-shadow: 0 30px 80px -40px rgba(15, 23, 42, 0.22), 0 0 0 0 rgba(93, 102, 255, 0);
+  }
+}
+
 @keyframes storeScroll {
   0%,
   10% {

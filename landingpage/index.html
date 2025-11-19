@@ -443,6 +443,72 @@
           </div>
         </section>
 
+        <section id="installer-signup" class="installer-intent">
+          <div class="installer-intent__content">
+            <div class="installer-intent__copy">
+              <p class="section-kicker">For installers</p>
+              <h2>Highest intent leads you'll ever get.</h2>
+              <p class="section-copy">
+                We place you in front of shoppers who just bought and need you now. No chasing cold directories—these
+                are customers that already committed to the job and expect to book within minutes.
+              </p>
+              <ul class="intent-points">
+                <li>
+                  <i data-lucide="flame"></i>
+                  Leads arrive immediately after checkout, when intent is highest.
+                </li>
+                <li>
+                  <i data-lucide="trophy"></i>
+                  Exclusive placements—only three installers shown per postcode.
+                </li>
+                <li>
+                  <i data-lucide="wallet-cards"></i>
+                  Flat, predictable lead fees. Keep your own pricing, tools, and schedule.
+                </li>
+              </ul>
+            </div>
+            <div class="installer-intent__form">
+              <div class="form-card">
+                <div class="form-card__header">
+                  <p class="form-eyebrow">Installer intake</p>
+                  <h3>Get bookings from every checkout</h3>
+                  <p>Drop your details and we’ll activate you for relevant postcodes.</p>
+                </div>
+                <form id="installer-signup-form" data-api-base="/api">
+                  <label>
+                    <span>Full name</span>
+                    <input name="fullName" type="text" autocomplete="name" required />
+                  </label>
+                  <label>
+                    <span>Business name</span>
+                    <input name="businessName" type="text" autocomplete="organization" required />
+                  </label>
+                  <label>
+                    <span>Work email</span>
+                    <input name="email" type="email" autocomplete="email" placeholder="you@business.com" required />
+                  </label>
+                  <div class="form-grid">
+                    <label>
+                      <span>Mobile number</span>
+                      <input name="mobile" type="tel" autocomplete="tel" required />
+                    </label>
+                    <label>
+                      <span>Phone number</span>
+                      <input name="phone" type="tel" autocomplete="tel-national" required />
+                    </label>
+                  </div>
+                  <button type="submit" class="button button--primary">Send my details</button>
+                  <p class="form-status" role="status" aria-live="polite"></p>
+                </form>
+                <div class="form-footnote">
+                  <i data-lucide="shield-check"></i>
+                  <span>Only used to qualify and match you to relevant jobs. No spam.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="trust">
           <div class="trust-card">
             <p class="section-kicker">Trust & safety</p>
