@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const heroProduct = {
+    name: "Pendant Light",
+    image: "./assets/images/pendant-light.png",
+  };
+
   const currentYearEl = document.getElementById("current-year");
   if (currentYearEl) {
     currentYearEl.textContent = new Date().getFullYear();
@@ -6,6 +11,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (window.lucide && typeof window.lucide.createIcons === "function") {
     window.lucide.createIcons();
+  }
+
+  if (heroProduct?.name) {
+    document.querySelectorAll("[data-product-name]").forEach((node) => {
+      node.textContent = heroProduct.name;
+    });
+  }
+
+  if (heroProduct?.image) {
+    document.querySelectorAll("[data-product-image]").forEach((img) => {
+      img.src = heroProduct.image;
+      const template = img.getAttribute("data-alt-template");
+      if (template) {
+        img.alt = template.replace("{product}", heroProduct.name);
+      } else if (!img.alt) {
+        img.alt = `${heroProduct.name} on display`;
+      }
+    });
   }
 
   const navTrigger = document.querySelector(".nav-trigger");
@@ -71,6 +94,31 @@ document.addEventListener("DOMContentLoaded", () => {
       setNavState(false);
     }
   });
+
+  const topNav = document.querySelector(".top-nav");
+  if (topNav) {
+    let prevCompact;
+    const updateNavState = () => {
+      const shouldCompact = window.scrollY > 40;
+      if (shouldCompact !== prevCompact) {
+        topNav.classList.toggle("is-compact", shouldCompact);
+        prevCompact = shouldCompact;
+      }
+    };
+    updateNavState();
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateNavState();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateNavState);
+  }
 
   const howGrid = document.querySelector(".how-grid");
   if (howGrid) {
