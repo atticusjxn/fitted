@@ -23,7 +23,22 @@ export function buildServer(): FastifyInstance {
   });
   void app.register(helmet);
   void app.register(cors, {
-    origin: true
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      const allowedOrigins = new Set([
+        'https://tryfitted.com',
+        'https://www.tryfitted.com'
+      ]);
+
+      if (allowedOrigins.has(origin)) {
+        return callback(null, true);
+      }
+
+      callback(new Error('Not allowed by CORS'));
+    }
   });
   void app.register(sensible);
 
