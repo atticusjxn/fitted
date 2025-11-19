@@ -10,14 +10,14 @@ export async function stripeWebhookRoutes(app: FastifyInstance) {
       return reply.code(200).send({ received: true });
     }
 
-    const signature = request.headers['stripe-signature'];
-    if (!signature) {
+    const signatureHeader = request.headers['stripe-signature'];
+    if (typeof signatureHeader !== 'string') {
       return reply.badRequest('Missing Stripe signature header');
     }
 
     let event: Stripe.Event;
     try {
-      event = constructStripeEvent(request.rawBody as Buffer, signature);
+      event = constructStripeEvent(request.rawBody as Buffer, signatureHeader);
     } catch (err) {
       app.log.error({ err }, 'Stripe webhook signature verification failed');
       return reply.status(400).send('Webhook Error');
