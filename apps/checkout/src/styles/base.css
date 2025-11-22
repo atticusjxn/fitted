@@ -360,6 +360,28 @@ body {
   font-size: 0.95rem;
 }
 
+.consent-box {
+  margin-top: 12px;
+  border: 1px solid var(--color-border);
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.consent-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  margin: 0 0 4px 0;
+}
+
+.consent-copy {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
 .success-card {
   border: 1px solid var(--color-border);
   border-radius: 16px;

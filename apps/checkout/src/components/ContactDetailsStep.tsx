@@ -205,6 +205,15 @@ export function ContactDetailsStep({
         </div>
       ) : null}
 
+      <div className="consent-box" role="note">
+        <p className="consent-title">Privacy & liability</p>
+        <p className="consent-copy">
+          By booking, you consent to share your contact details with the installer for scheduling. Installations are
+          performed by independent, licensed trades who carry their own insurance. If anything looks wrong, contact the
+          merchant before work begins. Your details are stored only as long as needed to coordinate the job.
+        </p>
+      </div>
+
       <div className="form-actions">
         <button type="button" className="button button--secondary" onClick={onBack} disabled={isSubmitting}>
           Back

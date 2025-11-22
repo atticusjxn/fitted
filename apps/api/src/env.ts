@@ -31,6 +31,7 @@ const envSchema = z.object({
   TWILIO_ACCOUNT_SID: z.string().optional(),
   TWILIO_AUTH_TOKEN: z.string().optional(),
   TWILIO_MESSAGING_SERVICE_SID: z.string().optional(),
+  TWILIO_FROM_NUMBER: z.string().optional(),
   POSTMARK_SERVER_TOKEN: z.string().optional(),
   GOOGLE_MAPS_API_KEY: z.string().optional(),
   INSTALLER_SIGNUP_NOTIFY_EMAIL: z.string().email().optional(),

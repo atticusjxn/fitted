@@ -10,6 +10,7 @@ import { shopifyRoutes } from './routes/shopify.js';
 import { installerRoutes } from './routes/installers.js';
 import { matchingRoutes } from './routes/matching.js';
 import { schedulingRoutes } from './routes/scheduling.js';
+import { tradesRoutes } from './routes/trades.js';
 
 export function buildServer(): FastifyInstance {
   const app = Fastify({
@@ -50,6 +51,7 @@ export function buildServer(): FastifyInstance {
   void app.register(shopifyRoutes, { prefix: '/api' });
   void app.register(matchingRoutes, { prefix: '/api' });
   void app.register(schedulingRoutes, { prefix: '/api' });
+  void app.register(tradesRoutes, { prefix: '/api' });
   void app.register(installerRoutes);
 
   return app;

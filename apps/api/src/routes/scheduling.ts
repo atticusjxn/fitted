@@ -1,5 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { supabase } from '../services/supabase.js';
+import { notifications } from '../services/notifications.js';
 
 export async function schedulingRoutes(app: FastifyInstance) {
   app.get('/leads/:id/scheduling', async (request, reply) => {
@@ -28,6 +29,7 @@ export async function schedulingRoutes(app: FastifyInstance) {
       status?: 'pending' | 'link_sent' | 'booked' | 'cancelled';
       scheduled_start_at?: string;
       scheduled_end_at?: string;
+      notify_to?: string;
     };
 
     const { error } = await supabase
@@ -43,6 +45,19 @@ export async function schedulingRoutes(app: FastifyInstance) {
     if (error) {
       app.log.error(error, 'failed to update scheduling status');
       return reply.status(500).send({ message: 'Failed to update scheduling' });
+    }
+
+    // Optional SMS notification when moving to booked
+    if (body.notify_to && body.status === 'booked') {
+      try {
+        await notifications.sendReminder({
+          to: body.notify_to,
+          leadId,
+          scheduledStart: body.scheduled_start_at
+        });
+      } catch (err) {
+        app.log.error(err, 'failed to send booking notification sms');
+      }
     }
 
     return reply.send({ ok: true });
