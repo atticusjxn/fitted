@@ -8,6 +8,8 @@ import { billingRoutes } from './routes/billing.js';
 import { stripeWebhookRoutes } from './routes/stripe-webhook.js';
 import { shopifyRoutes } from './routes/shopify.js';
 import { installerRoutes } from './routes/installers.js';
+import { matchingRoutes } from './routes/matching.js';
+import { schedulingRoutes } from './routes/scheduling.js';
 
 export function buildServer(): FastifyInstance {
   const app = Fastify({
@@ -46,7 +48,9 @@ export function buildServer(): FastifyInstance {
   void app.register(billingRoutes, { prefix: '/api' });
   void app.register(stripeWebhookRoutes, { prefix: '/api' });
   void app.register(shopifyRoutes, { prefix: '/api' });
-  void app.register(installerRoutes, { prefix: '/api' });
+  void app.register(matchingRoutes, { prefix: '/api' });
+  void app.register(schedulingRoutes, { prefix: '/api' });
+  void app.register(installerRoutes);
 
   return app;
 }

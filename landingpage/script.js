@@ -189,7 +189,13 @@ document.addEventListener("DOMContentLoaded", () => {
         source: "landing"
       };
 
-      if (!payload.fullName || !payload.businessName || !payload.mobile || !payload.phone) {
+      if (
+        !payload.fullName ||
+        !payload.businessName ||
+        !payload.email ||
+        !payload.mobile ||
+        !payload.phone
+      ) {
         setStatus("Please complete all required fields.", "error");
         submitButton?.removeAttribute("disabled");
         return;

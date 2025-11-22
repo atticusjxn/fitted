@@ -1633,6 +1633,7 @@ section {
   padding: clamp(60px, 14vw, 140px) clamp(20px, 6vw, 60px);
   background: linear-gradient(180deg, rgba(93, 102, 255, 0.08), rgba(93, 102, 255, 0));
   border-radius: var(--radius-lg);
+  scroll-margin-top: 100px;
 }
 
 .installer-intent__content {
