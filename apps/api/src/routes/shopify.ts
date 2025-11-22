@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 import { FastifyInstance } from 'fastify';
-import { buildShopifyAuthUrl, exchangeCodeForToken, fetchProducts, verifyHmac } from '../services/shopify.js';
+import { buildShopifyAuthUrl, exchangeCodeForToken, fetchCollections, fetchProducts, verifyHmac } from '../services/shopify.js';
 import { store } from '../services/store.js';
 
 const stateStore = new Set<string>();
@@ -81,6 +81,21 @@ export async function shopifyRoutes(app: FastifyInstance) {
     } catch (err) {
       app.log.error({ err }, 'Failed to fetch Shopify products');
       return reply.status(500).send('Failed to fetch products');
+    }
+  });
+
+  app.get('/shopify/collections', async (request, reply) => {
+    const { shop } = request.query as { shop?: string };
+    if (!shop) {
+      return reply.badRequest('Missing shop');
+    }
+
+    try {
+      const collections = await fetchCollections(shop);
+      return reply.send({ collections });
+    } catch (err) {
+      app.log.error({ err }, 'Failed to fetch Shopify collections');
+      return reply.status(500).send('Failed to fetch collections');
     }
   });
 

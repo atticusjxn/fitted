@@ -79,3 +79,27 @@ export async function fetchProducts(shop: string) {
 
   return data.products;
 }
+
+export async function fetchCollections(shop: string) {
+  const token = store.getShopToken(shop);
+  if (!token) {
+    throw new Error('No access token for this shop. Install the app first.');
+  }
+
+  const response = await fetch(`https://${shop}/admin/api/2024-10/custom_collections.json?limit=50`, {
+    headers: {
+      'X-Shopify-Access-Token': token,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch collections: ${response.statusText}`);
+  }
+
+  const data = (await response.json()) as {
+    custom_collections: Array<{ id: number; title: string }>;
+  };
+
+  return data.custom_collections;
+}
