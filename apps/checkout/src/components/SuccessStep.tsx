@@ -69,7 +69,6 @@ export function SuccessStep({ leadId, tradie, onReset }: SuccessStepProps) {
             </button>
           </div>
         </div>
-        <p className="success-reference">Request reference: {leadId}</p>
       </div>
 
       <button type="button" className="button button--primary" onClick={onReset}>
