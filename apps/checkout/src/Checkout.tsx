@@ -119,8 +119,12 @@ function PurchaseScreen({ shipping, onFieldChange, onComplete }: PurchaseScreenP
 
         <div className="purchase-grid">
           <aside className="order-summary">
-            <div className="summary-hero" aria-hidden="true">
-              <div className="summary-image-placeholder">{PRODUCT.name[0]}</div>
+            <div className="summary-hero">
+              <img
+                src="/assets/pendant-light.png"
+                alt={PRODUCT.imageAlt}
+                className="summary-image"
+              />
             </div>
             <div className="summary-body">
               <div className="summary-row">
