@@ -593,6 +593,8 @@ img {
   /* Dark background */
   padding: 120px 0;
   position: relative;
+  z-index: 20;
+  /* Ensure it sits above hero if overlap occurs */
   color: white;
   /* Ensure all text is white by default */
   height: 300vh;
@@ -783,8 +785,8 @@ img {
 
   .demo-container {
     display: flex;
-    flex-direction: column-reverse;
-    /* Phone top, Text bottom */
+    flex-direction: column;
+    /* Normal flow */
     padding: 0;
   }
 
@@ -793,16 +795,16 @@ img {
     flex: none;
     width: 100%;
     height: 500px;
-    /* Fixed height container */
     position: sticky;
     top: 100px;
-    /* Stick to top */
     z-index: 10;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
     pointer-events: none;
     overflow: visible;
+    order: -1;
+    /* Visually first */
   }
 
   .device-frame {

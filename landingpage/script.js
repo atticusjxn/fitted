@@ -74,6 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
           progress = Math.max(0, Math.min(1, -rect.top / scrollableDistance));
         }
 
+        console.log('Scroll Debug:', {
+          scrollTop: window.scrollY,
+          rectTop: rect.top,
+          sectionHeight,
+          viewportHeight,
+          scrollableDistance,
+          progress
+        });
+
         stepTexts.forEach((step, index) => {
           step.classList.remove('active');
           // Adjust thresholds to be more forgiving
