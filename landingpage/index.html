@@ -1,751 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fitted — Installation services built into checkout</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="https://unpkg.com/lucide@latest"></script>
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="hero">
-        <nav class="top-nav" aria-label="Primary navigation">
-          <a class="brand brand--solo" href="#top">
-            <img src="./assets/images/fittedlogoblack.png" alt="Fitted" />
-          </a>
-          <button
-            class="hamburger nav-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="nav-overlay"
-            aria-label="Toggle navigation"
-          >
-            <span class="hamburger__bar"></span>
-            <span class="hamburger__bar"></span>
-          </button>
-        </nav>
-        <div
-          class="nav-overlay"
-          id="nav-overlay"
-          aria-hidden="true"
-          aria-modal="true"
-          role="dialog"
-          hidden
-          tabindex="-1"
-        >
-          <div class="nav-overlay__inner">
-            <div class="nav-overlay__header">
-              <a class="brand brand--overlay" href="#top">
-                <img src="./assets/images/fittedlogoblack.png" alt="Fitted" />
-              </a>
-              <button class="hamburger nav-overlay__close" type="button" aria-label="Close navigation">
-                <span class="hamburger__bar"></span>
-                <span class="hamburger__bar"></span>
-              </button>
-            </div>
-            <ul class="nav-groups">
-              <li class="nav-group">
-                <button class="nav-group__toggle" type="button" aria-expanded="false">
-                  <span>Product</span>
-                  <i class="nav-group__icon" data-lucide="chevron-down"></i>
-                </button>
-                <div class="nav-group__body" hidden>
-                  <a href="#how-it-works">How it works</a>
-                  <a href="#demo">Demo</a>
-                  <a href="#pricing">Pricing</a>
-                </div>
-              </li>
-              <li class="nav-group">
-                <button class="nav-group__toggle" type="button" aria-expanded="false">
-                  <span>Resources</span>
-                  <i class="nav-group__icon" data-lucide="chevron-down"></i>
-                </button>
-                <div class="nav-group__body" hidden>
-                  <a href="#merchants">For merchants</a>
-                  <a href="#installer-signup">For installers</a>
-                  <a href="#faq">FAQ</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
 
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="hero-kicker">Installation at checkout</p>
-            <h1>Sell the product. We'll find the installer.</h1>
-            <p class="hero-subhead">
-              Stop losing sales because shoppers don't know who can install their purchase. Fitted adds a simple “Need
-              installation?” step at checkout, connecting customers with verified local pros the moment they pay.
-            </p>
-            <div class="hero-actions">
-              <a class="button button--primary" href="#pricing">Add to Shopify store</a>
-              <a class="button button--outline" href="#demo">
-                <i data-lucide="play-circle"></i>
-                Watch 60-second demo
-              </a>
-              <a class="button button--ghost" href="#installer-signup">I'm an installer</a>
-            </div>
-            <dl class="hero-metrics">
-              <div>
-                <dt>200+</dt>
-                <dd>Australian merchants trust Fitted at checkout.</dd>
-              </div>
-              <div>
-                <dt>15,000+</dt>
-                <dd>Installations completed through the marketplace.</dd>
-              </div>
-              <div>
-                <dt>4.8★</dt>
-                <dd>Average installer rating from verified reviews.</dd>
-              </div>
-            </dl>
-          </div>
-          <div class="hero-preview">
-            <div class="checkout-card">
-              <header>
-                <div>
-                  <p class="checkout-label">Cart summary</p>
-                  <h2><span data-product-name>Pendant Light</span></h2>
-                  <span class="price">$899</span>
-                </div>
-                <span class="delivery">Ships in 3-5 days</span>
-              </header>
-              <section class="installation">
-                  <div class="installation-header">
-                    <div>
-                      <p class="installation-eyebrow">Need installation?</p>
-                      <h3>Add a licensed pro in one click</h3>
-                    </div>
-                  </div>
-                <div class="postcode-field">
-                  <label for="hero-postcode">Postcode</label>
-                  <div class="input">
-                    <span>2060</span>
-                    <i data-lucide="check"></i>
-                  </div>
-                </div>
-                <ul class="installer-list">
-                  <li class="installer-card installer-card--active">
-                    <div class="installer-profile">
-                      <img class="installer-logo" src="./assets/images/electrician1.png" alt="Sparks Electric logo" />
-                      <div>
-                        <p class="installer-name">Sparks Electric</p>
-                        <p class="installer-meta">4.9★ · 128 reviews · 2.3 km away</p>
-                      </div>
-                    </div>
-                    <button type="button">Book now</button>
-                  </li>
-                  <li class="installer-card">
-                    <div class="installer-profile">
-                      <img class="installer-logo" src="./assets/images/electrician2.jpg" alt="North Shore Lighting logo" />
-                      <div>
-                        <p class="installer-name">North Shore Lighting</p>
-                        <p class="installer-meta">4.7★ · 89 reviews · 4.1 km away</p>
-                      </div>
-                    </div>
-                    <button type="button">Book now</button>
-                  </li>
-                  <li class="installer-card">
-                    <div class="installer-profile">
-                      <img class="installer-logo" src="./assets/images/electrician3.png" alt="Sydney Install Pros logo" />
-                      <div>
-                        <p class="installer-name">Sydney Install Pros</p>
-                        <p class="installer-meta">4.8★ · 156 reviews · 5.8 km away</p>
-                      </div>
-                    </div>
-                    <button type="button">Book now</button>
-                  </li>
-                </ul>
-                <footer class="installation-footer">
-                  <i data-lucide="mouse-pointer-click"></i>
-                  <span>Customer books on installer’s Calendly in seconds.</span>
-                </footer>
-              </section>
-            </div>
-          </div>
-        </div>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitted — Installation services built into checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
 
-      <main>
-        <section id="how-it-works" class="how">
-          <div class="section-header">
-            <p class="section-kicker">How it works</p>
-            <h2>Three simple steps from cart to installed.</h2>
-            <p class="section-copy">
-              Fitted meets shoppers when they are most committed—right after they purchase. No complex software, just a
-              clean referral flow.
-            </p>
-          </div>
-          <div class="how-grid">
-            <ol class="how-sequence">
-              <li style="--step-index: 0">
-                <div class="how-text">
-                  <span class="step-label">Step 1</span>
-                  <h3>Customer checks out</h3>
-                  <p>
-                    The shopper completes checkout for an installation-heavy product. Fitted is ready to prompt them
-                    with “Need installation?” before they leave.
-                  </p>
-                </div>
-                <div class="how-card how-card--purchase">
-                  <figure class="product-shot product-shot--inline">
-                    <img
-                      src="./assets/images/pendant-light.png"
-                      data-product-image
-                      loading="lazy"
-                      data-alt-template="{product} featured in online store listing"
-                      alt="Pendant light product listing"
-                    />
-                    <figcaption>
-                      <div>
-                        <strong data-product-name>Pendant Light</strong>
-                        <span>Beacon &amp; Co Lighting</span>
-                      </div>
-                      <span class="product-shot__price">$899</span>
-                    </figcaption>
-                  </figure>
-                  <div class="purchase-header">
-                    <span class="badge badge--ghost">Checkout</span>
-                    <span class="purchase-total">$899</span>
-                  </div>
-                  <p class="purchase-product"><span data-product-name>Pendant Light</span> · Beacon &amp; Co Lighting</p>
-                  <div class="purchase-meta">
-                    <span>Visa ending ••48</span>
-                    <span>Ship in 3–5 days</span>
-                  </div>
-                  <button class="purchase-button">
-                    <i data-lucide="credit-card"></i>
-                    Complete purchase
-                  </button>
-                </div>
-              </li>
-              <li style="--step-index: 1">
-                <div class="how-text">
-                  <span class="step-label">Step 2</span>
-                  <h3>Fitted shows nearby pros</h3>
-                  <p>
-                    We instantly display three verified installers—ratings, reviews, and distance—so the customer picks
-                    a favourite and books through the installer’s own calendar.
-                  </p>
-                </div>
-                <div class="how-card how-card--match">
-                  <div class="match-header">
-                    <span class="match-eyebrow">Need installation?</span>
-                  </div>
-                  <div class="match-postcode">
-                    <i data-lucide="map-pin"></i>
-                    <span>2060</span>
-                  </div>
-                  <ul class="match-list">
-                    <li>
-                      <div>
-                        <strong>Sparks Electric</strong>
-                        <span>4.9★ · 2.3 km</span>
-                      </div>
-                      <span class="chip chip--action">Book</span>
-                    </li>
-                    <li>
-                      <div>
-                        <strong>North Shore Lighting</strong>
-                        <span>4.7★ · 4.1 km</span>
-                      </div>
-                      <span class="chip chip--ghost">View</span>
-                    </li>
-                    <li>
-                      <div>
-                        <strong>Sydney Install Pros</strong>
-                        <span>4.8★ · 5.8 km</span>
-                      </div>
-                      <span class="chip chip--ghost">View</span>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li style="--step-index: 2">
-                <div class="how-text">
-                  <span class="step-label">Step 3</span>
-                  <h3>Lead lands with the tradie</h3>
-                  <p>
-                    The installer receives a text notification with job details and accepts the booking. You keep the
-                    product sale and Fitted charges them the $25–30 lead fee.
-                  </p>
-                </div>
-                <div class="how-card how-card--notify">
-                  <div class="notify-phone">
-                    <header>
-                      <span>Fitted Lead</span>
-                      <i data-lucide="smartphone"></i>
-                    </header>
-                    <div class="notify-message">
-                      <p><strong>New install request</strong></p>
-                      <p><span data-product-name>Pendant Light</span> · Alex Jordan</p>
-                      <p>24 Aug · 10:00 · North Sydney</p>
-                      <button type="button">Accept job</button>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ol>
-          </div>
-        </section>
-
-        <section id="demo" class="demo">
-          <div class="section-header">
-            <p class="section-kicker">See it in action</p>
-            <h2>Installation appears right in checkout.</h2>
-            <p class="section-copy">
-              Here’s exactly what shoppers see after they’ve paid. No new portals, no extra steps—just three bookable
-              installers embedded in the flow.
-            </p>
-          </div>
-          <div class="demo-preview">
-              <div class="demo-checkout">
-                <header>
-                  <div>
-                    <p class="checkout-label">Checkout</p>
-                    <h3><span data-product-name>Pendant Light</span></h3>
-                  </div>
-                  <span class="price">$899</span>
-                </header>
-                <div class="demo-installation">
-                  <div class="demo-top">
-                    <div>
-                      <p class="installation-eyebrow">Need installation?</p>
-                      <h4>Connect with a licensed electrician near you</h4>
-                    </div>
-                  </div>
-                <div class="demo-postcode">
-                  <label for="demo-postcode">Postcode</label>
-                  <div class="input">
-                    <i data-lucide="map-pin"></i>
-                    <span>2060</span>
-                  </div>
-                </div>
-                <ul class="demo-installers">
-                  <li>
-                    <div>
-                      <strong>Sparks Electric</strong>
-                      <span>4.9★ · 128 reviews · 2.3 km</span>
-                    </div>
-                    <button type="button">Book now</button>
-                  </li>
-                  <li>
-                    <div>
-                      <strong>North Shore Lighting</strong>
-                      <span>4.7★ · 89 reviews · 4.1 km</span>
-                    </div>
-                    <button type="button">Book now</button>
-                  </li>
-                  <li>
-                    <div>
-                      <strong>Sydney Install Pros</strong>
-                      <span>4.8★ · 156 reviews · 5.8 km</span>
-                    </div>
-                    <button type="button">Book now</button>
-                  </li>
-                </ul>
-                <div class="demo-footer">
-                  <i data-lucide="external-link"></i>
-                  <span>Bookings happen in the installer’s Calendly or ServiceM8.</span>
-                </div>
-              </div>
-            </div>
-            <aside class="demo-notes">
-              <ul>
-                <li>
-                  <i data-lucide="clock"></i>
-                  <div>
-                    <h5>30-second booking</h5>
-                    <p>The buyer stays in flow and confirms install before leaving checkout.</p>
-                  </div>
-                </li>
-                <li>
-                  <i data-lucide="star"></i>
-                  <div>
-                    <h5>Verified marketplace</h5>
-                    <p>Only licensed, insured pros with 4.5★+ ratings appear.</p>
-                  </div>
-                </li>
-                <li>
-                  <i data-lucide="arrow-right"></i>
-                  <div>
-                    <h5>No extra ops</h5>
-                    <p>Customers pay installers directly; you never manage scheduling.</p>
-                  </div>
-                </li>
-              </ul>
-            </aside>
-          </div>
-        </section>
-
-        <section id="merchants" class="benefits">
-          <div class="benefits-content">
-            <div>
-              <p class="section-kicker">For merchants</p>
-              <h2>High-intent installation leads without extra overhead.</h2>
-              <ul class="benefit-list">
-                <li>
-                  <i data-lucide="trending-up"></i>
-                  Boost conversion by removing installation anxiety at the point of purchase.
-                </li>
-                <li>
-                  <i data-lucide="badge-dollar-sign"></i>
-                  Increase average order value—installation upsell adds 15–40% to the cart.
-                </li>
-                <li>
-                  <i data-lucide="sparkles"></i>
-                  Build trust with vetted, insured tradespeople that match your brand.
-                </li>
-                <li>
-                  <i data-lucide="zap"></i>
-                  Five-minute setup in Shopify—flag relevant SKUs and go live.
-                </li>
-                <li>
-                  <i data-lucide="puzzle"></i>
-                  Zero scheduling to manage. Installers stay independent and use their own tools.
-                </li>
-              </ul>
-            </div>
-            <div id="installers" class="benefits-divider"></div>
-            <div>
-              <p class="section-kicker">For installers</p>
-              <h2>Qualified jobs from customers who already bought.</h2>
-              <ul class="benefit-list">
-                <li>
-                  <i data-lucide="target"></i>
-                  High-intent leads—buyers just purchased and need you immediately.
-                </li>
-                <li>
-                  <i data-lucide="wallet"></i>
-                  Pay only $25–30 per qualified lead. No monthly fees or lock-in contracts.
-                </li>
-                <li>
-                  <i data-lucide="notebook-pen"></i>
-                  Keep using your scheduling stack: Calendly, ServiceM8, Jobber, Housecall Pro, anything with a link.
-                </li>
-                <li>
-                  <i data-lucide="medal"></i>
-                  Grow reputation with reviews that surface you first to future shoppers.
-                </li>
-                <li>
-                  <i data-lucide="shield-check"></i>
-                  Leads are exclusive—only three installers shown per postcode search.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section id="installer-signup" class="installer-intent">
-          <div class="installer-intent__content">
-            <div class="installer-intent__copy">
-              <p class="section-kicker">For installers</p>
-              <h2>Highest intent leads you'll ever get.</h2>
-              <p class="section-copy">
-                We place you in front of shoppers who just bought and need you now. No chasing cold directories—these
-                are customers that already committed to the job and expect to book within minutes.
-              </p>
-              <ul class="intent-points">
-                <li>
-                  <i data-lucide="flame"></i>
-                  Leads arrive immediately after checkout, when intent is highest.
-                </li>
-                <li>
-                  <i data-lucide="trophy"></i>
-                  Exclusive placements—only three installers shown per postcode.
-                </li>
-                <li>
-                  <i data-lucide="wallet-cards"></i>
-                  Flat, predictable lead fees. Keep your own pricing, tools, and schedule.
-                </li>
-              </ul>
-            </div>
-            <div class="installer-intent__form">
-              <div class="form-card">
-                <div class="form-card__header">
-                  <p class="form-eyebrow">Installer intake</p>
-                  <h3>Get bookings from every checkout</h3>
-                  <p>Drop your details and we’ll activate you for relevant postcodes.</p>
-                </div>
-                <form id="installer-signup-form" data-api-base="https://fitted-api.vercel.app/api">
-                  <label>
-                    <span>Full name</span>
-                    <input name="fullName" type="text" autocomplete="name" required />
-                  </label>
-                  <label>
-                    <span>Business name</span>
-                    <input name="businessName" type="text" autocomplete="organization" required />
-                  </label>
-                  <label>
-                    <span>Work email</span>
-                    <input name="email" type="email" autocomplete="email" placeholder="you@business.com" required />
-                  </label>
-                  <div class="form-grid">
-                    <label>
-                      <span>Mobile number</span>
-                      <input name="mobile" type="tel" autocomplete="tel" required />
-                    </label>
-                    <label>
-                      <span>Phone number</span>
-                      <input name="phone" type="tel" autocomplete="tel-national" required />
-                    </label>
-                  </div>
-                  <button type="submit" class="button button--primary">Send my details</button>
-                  <p class="form-status" role="status" aria-live="polite"></p>
-                </form>
-                <div class="form-footnote">
-                  <i data-lucide="shield-check"></i>
-                  <span>Only used to qualify and match you to relevant jobs. No spam.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="trust">
-          <div class="trust-card">
-            <p class="section-kicker">Trust & safety</p>
-            <h2>Verified pros you can rely on.</h2>
-            <div class="trust-grid">
-              <article>
-                <i data-lucide="badge-check"></i>
-                <h3>Vetted, licensed, insured</h3>
-                <p>Every installer is background checked, licensed for the work, and insured with $5M liability cover.</p>
-              </article>
-              <article>
-                <i data-lucide="gauge"></i>
-                <h3>4.5★+ rating requirement</h3>
-                <p>Installers must maintain strong reviews to keep receiving leads. Underperformers are automatically removed.</p>
-              </article>
-              <article>
-                <i data-lucide="link-2-off"></i>
-                <h3>Clear separation</h3>
-                <p>Installers are independent businesses. You provide the connection, not employment or scheduling.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="testimonial">
-          <blockquote>
-            “Fitted solved our biggest objection at checkout. Customers were buying $2,000+ appliances but backing out
-            because they didn’t know how to get them installed. Now they book an installer in 30 seconds and our
-            conversion rate jumped 23%.”
-          </blockquote>
-          <div class="testimonial-meta">
-            <p><strong>Sarah Chen</strong></p>
-            <p>Owner, Metro Appliances (Sydney)</p>
-          </div>
-          <ul class="testimonial-stats">
-            <li>
-              <span class="stat-value">23%</span>
-              <span class="stat-label">Conversion lift</span>
-            </li>
-            <li>
-              <span class="stat-value">$340</span>
-              <span class="stat-label">Average order value uplift</span>
-            </li>
-            <li>
-              <span class="stat-value">91%</span>
-              <span class="stat-label">Bookings within 24 hours</span>
-            </li>
-            <li>
-              <span class="stat-value">4.8★</span>
-              <span class="stat-label">Average install rating</span>
-            </li>
-          </ul>
-        </section>
-
-        <section class="integrations">
-          <div class="section-header">
-            <p class="section-kicker">Integrations</p>
-            <h2>Works with the tools you already use.</h2>
-            <p class="section-copy">
-              Fitted sits between your checkout and an installer’s booking link. No complex middleware, no workflow
-              rebuild.
-            </p>
-          </div>
-          <div class="integration-groups">
-            <div class="integration-panel">
-              <h3>Merchant platforms</h3>
-              <p>Install the Fitted checkout app in minutes.</p>
-              <div class="integration-marquee integration-marquee--merchants" style="--marquee-speed: 26s">
-                <div class="integration-track">
-                  <img src="./assets/images/shopify-mono-white.png" alt="Shopify" />
-                  <img src="./assets/images/squarespace.png" alt="Squarespace" />
-                  <img src="./assets/images/WIX.D-9b5f1d10.png" alt="Wix" />
-                  <img src="./assets/images/WordPress-logotype-wordmark-white.png" alt="WooCommerce" />
-                  <div class="integration-duplicate" aria-hidden="true">
-                    <img src="./assets/images/shopify-mono-white.png" alt="" />
-                    <img src="./assets/images/squarespace.png" alt="" />
-                    <img src="./assets/images/WIX.D-9b5f1d10.png" alt="" />
-                    <img src="./assets/images/WordPress-logotype-wordmark-white.png" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="integration-panel">
-              <h3>Installer booking tools</h3>
-              <p>Pros keep their existing calendars—we just send the lead.</p>
-              <div
-                class="integration-marquee integration-marquee--installers"
-                data-direction="reverse"
-                style="--marquee-speed: 22s"
-              >
-                <div class="integration-track">
-                  <img src="./assets/images/jobber.png" alt="Jobber" />
-                  <img src="./assets/images/calendly.png" alt="Calendly" />
-                  <img src="./assets/images/servicetitan-logo-white.webp" alt="ServiceTitan" />
-                  <div class="integration-duplicate" aria-hidden="true">
-                    <img src="./assets/images/jobber.png" alt="" />
-                    <img src="./assets/images/calendly.png" alt="" />
-                    <img src="./assets/images/servicetitan-logo-white.webp" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="integration-chips">
-                <span>ServiceM8</span>
-                <span>Housecall Pro</span>
-                <span>Google Calendar links</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="pricing" class="pricing">
-          <div class="section-header">
-            <p class="section-kicker">Pricing</p>
-            <h2>Start connecting customers with installers today.</h2>
-            <p class="section-copy">No lock-in contracts. Choose the model that fits your store.</p>
-          </div>
-          <div class="pricing-grid">
-            <article class="pricing-card">
-              <header>
-                <h3>For merchants</h3>
-                <p>Simple revenue share or flat monthly fee.</p>
-              </header>
-              <ul>
-                <li><i data-lucide="check"></i>Free to install</li>
-                <li><i data-lucide="check"></i>Pay commission only on successful installations</li>
-                <li><i data-lucide="check"></i>Or $99/month for unlimited installs</li>
-                <li><i data-lucide="check"></i>Cancel anytime</li>
-              </ul>
-              <div class="pricing-actions">
-                <a class="button button--primary" href="#">Add to Shopify</a>
-                <a class="button button--ghost" href="#demo">Book a demo</a>
-              </div>
-            </article>
-            <article class="pricing-card">
-              <header>
-                <h3>For installers</h3>
-                <p>Only pay for real, ready-to-book customers.</p>
-              </header>
-              <ul>
-                <li><i data-lucide="check"></i>$25–30 per qualified lead</li>
-                <li><i data-lucide="check"></i>No signup or monthly fees</li>
-                <li><i data-lucide="check"></i>Pause anytime</li>
-                <li><i data-lucide="check"></i>Stripe billing with transparent history</li>
-              </ul>
-              <div class="pricing-actions">
-                <a class="button button--outline" href="#">Join as an installer</a>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="faq" class="faq">
-          <div class="section-header">
-            <p class="section-kicker">FAQ</p>
-            <h2>Answers for busy operators.</h2>
-          </div>
-          <div class="faq-grid">
-            <article>
-              <h3>How is Fitted different from Angi or HipPages?</h3>
-              <p>
-                Timing. We capture customers at their highest intent—immediately after buying an installation-heavy
-                product. They aren’t comparison shopping; they need help now.
-              </p>
-            </article>
-            <article>
-              <h3>What if an installer does a bad job?</h3>
-              <p>
-                Every installer is licensed, insured, and maintains a 4.5★+ rating. Jobs are covered by $5M liability
-                insurance and poor performers are removed automatically.
-              </p>
-            </article>
-            <article>
-              <h3>How long does setup take?</h3>
-              <p>
-                Five to ten minutes. Install the Shopify app, select which products offer installation, and you’re live.
-                We handle installer verification and matching.
-              </p>
-            </article>
-            <article>
-              <h3>Do we manage the installers?</h3>
-              <p>
-                No. They are independent professionals with their own booking and payment systems. You simply offer the
-                connection—zero operational overhead.
-              </p>
-            </article>
-            <article>
-              <h3>What products perform best with Fitted?</h3>
-              <p>
-                Anything that needs professional installation: lighting, ceiling fans, appliances, heat pumps, air
-                conditioners, outdoor equipment, mirrors, TVs, security systems, and more.
-              </p>
-            </article>
-            <article>
-              <h3>How do installers get paid?</h3>
-              <p>
-                Customers pay installers directly through their booking system. Fitted bills the installer $25–30 per
-                lead via Stripe after the booking is confirmed.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section class="final-cta">
-          <div class="cta-card">
-            <div class="cta-copy">
-              <h2>Ready to add installation at checkout?</h2>
-              <p>
-                Give shoppers a seamless way to book trusted pros the moment they buy. Get started in minutes—no new
-                operations required.
-              </p>
-            </div>
-            <div class="cta-actions">
-              <a class="button button--primary" href="#pricing">Add to Shopify</a>
-              <a class="button button--outline" href="#demo">Watch demo</a>
-              <a class="button button--ghost" href="#">Apply as installer</a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <div class="footer-brand">
-          <img src="./assets/images/fittedlogoblack.png" alt="Fitted" />
-          <p>Installation services built into checkout for Australian merchants.</p>
-        </div>
-        <ul class="footer-links">
-          <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#demo">Demo</a></li>
-          <li><a href="#merchants">Merchants</a></li>
-          <li><a href="#installer-signup">Installers</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-        <p class="footer-meta">© <span id="current-year"></span> Fitted. All rights reserved.</p>
-      </footer>
+<body>
+  <!-- Floating Pill Navigation -->
+  <nav class="nav-pill">
+    <a href="#" class="nav-logo">
+      <img src="./assets/images/fittedlogoblack.png" alt="Fitted" />
+    </a>
+    <div class="nav-links hidden md:flex">
+      <a href="#product">Product</a>
+      <a href="#merchants">Merchants</a>
+      <a href="#installers">Installers</a>
+      <a href="#pricing">Pricing</a>
     </div>
-    <script src="./script.js"></script>
-  </body>
+    <a href="#demo" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Get Started</a>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-badge"
+          style="margin-bottom: 2rem; display: inline-block; background: white; padding: 0.5rem 1rem; border-radius: 99px; box-shadow: var(--shadow-soft); font-size: 0.875rem; font-weight: 500;">
+          <span style="color: var(--color-accent);">New</span> Shopify Integration Live
+        </div>
+
+        <h1 class="heading-display">
+          <span class="reveal-text">Installation</span> <span class="reveal-text"
+            style="color: var(--color-text-tertiary);">at</span><br />
+          <span class="reveal-text">Checkout.</span>
+        </h1>
+
+        <p class="text-lg" style="max-width: 600px; margin: 0 auto 3rem;">
+          Connect online shoppers with local tradespeople instantly. Boost conversion and AOV with the first embedded
+          installation marketplace.
+        </p>
+
+        <div class="flex justify-center gap-sm">
+          <a href="#merchants" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.125rem;">
+            Add to Shopify
+          </a>
+          <a href="#demo" class="btn btn-white" style="padding: 1rem 2rem; font-size: 1.125rem;">
+            <i data-lucide="play-circle" style="margin-right: 0.5rem;"></i> Watch Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- Floating Parallax Elements -->
+      <div class="floating-ui" style="top: 20%; left: 10%; animation-delay: 0s;">
+        <div class="float-card">
+          <img src="./assets/images/electrician1.png" alt="Pro" />
+          <div>
+            <div style="font-weight: 700;">Sparks Electric</div>
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary);">4.9★ • 2.3km away</div>
+          </div>
+          <div
+            style="background: #DEF7EC; color: #03543F; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">
+            Book</div>
+        </div>
+      </div>
+
+      <div class="floating-ui" style="top: 30%; right: 10%; animation-delay: 1s;">
+        <div class="float-card">
+          <div
+            style="width: 48px; height: 48px; background: #F3F4F6; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="shopping-cart" color="black"></i>
+          </div>
+          <div>
+            <div style="font-weight: 700;">Pendant Light</div>
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary);">Added to cart</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-ui" style="bottom: 20%; left: 15%; animation-delay: 2s;">
+        <div class="float-card" style="padding: 1rem;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="position: relative;">
+              <img src="./assets/images/electrician2.jpg" alt="User"
+                style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
+              <div
+                style="position: absolute; bottom: -2px; right: -2px; background: #10B981; border: 2px solid white; width: 14px; height: 14px; border-radius: 50%;">
+              </div>
+            </div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Job Completed</div>
+              <div style="display: flex; gap: 2px; color: #FBBF24;">
+                <i data-lucide="star" size="12" fill="currentColor"></i>
+                <i data-lucide="star" size="12" fill="currentColor"></i>
+                <i data-lucide="star" size="12" fill="currentColor"></i>
+                <i data-lucide="star" size="12" fill="currentColor"></i>
+                <i data-lucide="star" size="12" fill="currentColor"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <section class="marquee-wrapper">
+      <div class="marquee-container">
+        <div class="marquee-content">
+          <!-- Logos (using existing assets) -->
+          <!-- Logos (using existing assets) -->
+          <div class="marquee-track">
+            <!-- 1. Shopify -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" alt="Shopify" />
+            </div>
+            <!-- 2. Squarespace -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/squarespace.svg" alt="Squarespace" />
+            </div>
+            <!-- 3. WooCommerce -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/woocommerce.svg" alt="WooCommerce" />
+            </div>
+            <!-- 4. BigCommerce -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/bigcommerce-2.svg" alt="BigCommerce" />
+            </div>
+            <!-- 5. ServiceTitan -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/servicetitan.com" alt="ServiceTitan" />
+            </div>
+            <!-- 6. Jobber -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/jobber.com" alt="Jobber" />
+            </div>
+            <!-- 7. Simpro -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/simprogroup.com" alt="Simpro" />
+            </div>
+            <!-- 8. AroFlo -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/aroflo.com" alt="AroFlo" />
+            </div>
+
+            <!-- DUPLICATE SET FOR INFINITE SCROLL -->
+            <!-- 1. Shopify -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" alt="Shopify" />
+            </div>
+            <!-- 2. Squarespace -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/squarespace.svg" alt="Squarespace" />
+            </div>
+            <!-- 3. WooCommerce -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/woocommerce.svg" alt="WooCommerce" />
+            </div>
+            <!-- 4. BigCommerce -->
+            <div class="integration-logo">
+              <img src="https://cdn.worldvectorlogo.com/logos/bigcommerce-2.svg" alt="BigCommerce" />
+            </div>
+            <!-- 5. ServiceTitan -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/servicetitan.com" alt="ServiceTitan" />
+            </div>
+            <!-- 6. Jobber -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/jobber.com" alt="Jobber" />
+            </div>
+            <!-- 7. Simpro -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/simprogroup.com" alt="Simpro" />
+            </div>
+            <!-- 8. AroFlo -->
+            <div class="integration-logo">
+              <img src="https://logo.clearbit.com/aroflo.com" alt="AroFlo" />
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Reactive Demo Section -->
+    <section id="demo" class="demo-section">
+      <div class="demo-sticky-wrapper">
+        <div class="demo-container">
+          <div class="demo-text">
+            <div class="demo-step-text active" data-step="1">
+              <div style="color: var(--color-accent); font-weight: 700; margin-bottom: 1rem;">Step 1</div>
+              <h2 class="heading-lg mb-4">Shopper checks out.</h2>
+              <p class="text-lg" style="color: #9CA3AF;">Your customer buys a product that needs installation. They
+                proceed through checkout as normal.</p>
+            </div>
+            <div class="demo-step-text" data-step="2">
+              <div style="color: var(--color-accent); font-weight: 700; margin-bottom: 1rem;">Step 2</div>
+              <h2 class="heading-lg mb-4">Fitted appears instantly.</h2>
+              <p class="text-lg" style="color: #9CA3AF;">Right after payment, we surface a "Need installation?" prompt.
+                No redirect, no friction.</p>
+            </div>
+            <div class="demo-step-text" data-step="3">
+              <div style="color: var(--color-accent); font-weight: 700; margin-bottom: 1rem;">Step 3</div>
+              <h2 class="heading-lg mb-4">Local pros matched.</h2>
+              <p class="text-lg" style="color: #9CA3AF;">We show 3 verified installers nearby. The customer picks one
+                and books a time slot immediately.</p>
+            </div>
+          </div>
+
+          <div class="device-frame-wrapper">
+            <div class="device-frame">
+              <!-- Screen 1: Cart/Checkout -->
+              <div class="device-screen" id="screen-1">
+                <div class="demo-header">
+                  <div style="font-weight: 700;">Checkout</div>
+                </div>
+                <div class="demo-product">
+                  <div class="demo-product-img">
+                    <img src="./assets/images/pendant-light.png"
+                      style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />
+                  </div>
+                  <div>
+                    <div style="font-weight: 600;">Pendant Light</div>
+                    <div style="color: var(--color-text-secondary);">$899.00</div>
+                  </div>
+                </div>
+                <div style="margin-top: auto; border-top: 1px solid #E5E7EB; padding-top: 20px;">
+                  <div class="flex justify-between mb-4">
+                    <span>Total</span>
+                    <span style="font-weight: 700;">$899.00</span>
+                  </div>
+                  <button
+                    style="width: 100%; background: black; color: white; padding: 15px; border-radius: 12px; font-weight: 600;">Pay
+                    Now</button>
+                </div>
+              </div>
+
+              <!-- Screen 2: Fitted Overlay -->
+              <div class="device-screen" id="screen-2"
+                style="background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); opacity: 0; pointer-events: none;">
+                <div class="demo-fitted-prompt">
+                  <div class="flex justify-between items-center mb-4">
+                    <div>
+                      <div style="font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">Need installation?
+                      </div>
+                      <div style="font-weight: 600; font-size: 1.125rem;">Add a licensed pro</div>
+                    </div>
+                    <div
+                      style="background: #F3F4F6; padding: 4px 8px; border-radius: 6px; font-size: 0.875rem; font-weight: 600;">
+                      2060</div>
+                  </div>
+
+                  <div class="demo-installer-list">
+                    <div class="demo-installer-card selected">
+                      <div class="flex items-center gap-3">
+                        <img src="./assets/images/electrician1.png"
+                          style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
+                        <div>
+                          <div class="flex items-center gap-2">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Sparks Electric</div>
+                            <span
+                              style="font-size: 0.6rem; background: #DCFCE7; color: #166534; padding: 1px 4px; border-radius: 4px; font-weight: 600;">INSURED</span>
+                          </div>
+                          <div style="font-size: 0.75rem; color: var(--color-text-secondary);">4.9★ • 2.3km • ABN
+                            Verified
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        style="background: var(--color-accent); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i data-lucide="check" size="14"></i>
+                      </div>
+                    </div>
+
+                    <div class="demo-installer-card">
+                      <div class="flex items-center gap-3">
+                        <img src="./assets/images/electrician2.jpg"
+                          style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
+                        <div>
+                          <div class="flex items-center gap-2">
+                            <div style="font-weight: 600; font-size: 0.9rem;">North Shore Lighting</div>
+                            <span
+                              style="font-size: 0.6rem; background: #DCFCE7; color: #166534; padding: 1px 4px; border-radius: 4px; font-weight: 600;">INSURED</span>
+                          </div>
+                          <div style="font-size: 0.75rem; color: var(--color-text-secondary);">4.7★ • 4.1km • ABN
+                            Verified
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    style="width: 100%; background: var(--color-accent); color: white; padding: 12px; border-radius: 8px; font-weight: 600; margin-top: 15px;">Book
+                    Installer</button>
+                </div>
+              </div>
+
+              <!-- Screen 3: Confirmation -->
+              <div class="device-screen" id="screen-3"
+                style="background: white; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                <div class="flex flex-col items-center justify-center h-full text-center p-6">
+                  <div
+                    style="width: 64px; height: 64px; background: #DCFCE7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                    <i data-lucide="check" size="32" color="#166534"></i>
+                  </div>
+                  <h3 class="heading-md mb-2">Booking Confirmed!</h3>
+                  <p class="text-secondary mb-8">Sparks Electric has received your request.</p>
+
+                  <div
+                    style="width: 100%; background: #F9FAFB; border-radius: 12px; padding: 16px; margin-bottom: 1.5rem;">
+                    <div class="flex items-center gap-4 mb-4">
+                      <img src="./assets/images/electrician1.png"
+                        style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;" />
+                      <div class="text-left">
+                        <div style="font-weight: 700;">Sparks Electric</div>
+                        <div style="font-size: 0.875rem; color: var(--color-text-secondary);">Arriving Tue, 24 Oct</div>
+                      </div>
+                    </div>
+                    <div class="flex gap-2">
+                      <button
+                        style="flex: 1; background: white; border: 1px solid #E5E7EB; padding: 8px; border-radius: 8px; font-weight: 600; font-size: 0.875rem;">Call
+                        Now</button>
+                      <button
+                        style="flex: 1; background: white; border: 1px solid #E5E7EB; padding: 8px; border-radius: 8px; font-weight: 600; font-size: 0.875rem;">Add
+                        Contact</button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-2 text-sm text-secondary">
+                    <i data-lucide="calendar" size="16"></i>
+                    <span>Added to your calendar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tradie View (Floating Notification) -->
+          <div class="tradie-notification">
+            <div class="flex items-center gap-3 mb-2">
+              <div style="width: 8px; height: 8px; background: #3B82F6; border-radius: 50%;"></div>
+              <span style="font-size: 0.75rem; font-weight: 600; color: #9CA3AF;">FITTED FOR PROS</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div style="background: #EFF6FF; padding: 8px; border-radius: 8px;">
+                <i data-lucide="bell" size="20" color="#3B82F6"></i>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.9rem;">New Job Request</div>
+                <div style="font-size: 0.8rem; color: #9CA3AF;">Pendant Light Install • $120</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Features -->
+    <section id="product" class="section">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="heading-lg">Everything you need to <br />connect commerce to service.</h2>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Large Item: Map/Location -->
+          <div class="bento-item large" style="background: #111827; color: white;">
+            <div>
+              <div
+                style="background: rgba(255,255,255,0.1); width: fit-content; padding: 0.5rem 1rem; border-radius: 99px; margin-bottom: 1rem;">
+                <i data-lucide="map-pin" size="16"></i> Local Matching
+              </div>
+              <h3 class="heading-md mb-4">Smart Proximity Ranking</h3>
+              <p style="color: #9CA3AF;">We automatically surface the highest-rated installers within a configurable
+                radius of the customer's shipping address.</p>
+            </div>
+            <div class="map-section-container">
+              <img src="./assets/images/sydney_map_dark_mode.png" class="map-image" alt="Local Installers Map" />
+
+              <!-- Map Pins -->
+              <div class="map-pin" style="top: 40%; left: 60%;">
+                <div class="map-pin-icon"><i data-lucide="zap" size="16"></i></div>
+                <div class="map-pin-label">Sparks Electric</div>
+              </div>
+
+              <div class="map-pin" style="top: 65%; left: 35%;">
+                <div class="map-pin-icon"><i data-lucide="lightbulb" size="16"></i></div>
+                <div class="map-pin-label">North Shore Lighting</div>
+              </div>
+
+              <div class="map-pin" style="top: 30%; left: 25%;">
+                <div class="map-pin-icon"><i data-lucide="wrench" size="16"></i></div>
+                <div class="map-pin-label">Ace Installations</div>
+              </div>
+
+              <div class="map-pin" style="top: 75%; left: 75%;">
+                <div class="map-pin-icon"><i data-lucide="hammer" size="16"></i></div>
+                <div class="map-pin-label">Sydney Pros</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small Item: Reviews -->
+          <!-- Small Item: Verified Trades -->
+          <div class="bento-item">
+            <div class="verified-card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                <div style="background: #DEF7EC; padding: 8px; border-radius: 8px;">
+                  <i data-lucide="shield-check" size="20" color="#059669"></i>
+                </div>
+                <div class="toggle-switch active">
+                  <div class="toggle-knob"></div>
+                </div>
+              </div>
+              <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Verified & Insured</h4>
+              <p class="text-sm text-secondary" style="margin-bottom: 1rem;">You control your network. Toggle strict
+                requirements for insurance and licenses directly in Shopify.</p>
+              <div style="display: flex; gap: 8px;">
+                <span class="badge badge-green">License Verified</span>
+                <span class="badge badge-green">Insured</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small Item: Integration -->
+          <div class="bento-item">
+            <div
+              style="background: #E0E7FF; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <i data-lucide="puzzle" color="#4F46E5"></i>
+            </div>
+            <h3 class="heading-md mb-2">5-Minute Setup</h3>
+            <p class="text-sm text-secondary">Install the Shopify app, tag your products, and you're live. No code
+              required.</p>
+          </div>
+
+          <!-- Large Item: Installers Form -->
+          <div class="bento-item large" style="background: white;">
+            <div class="installer-form-wrapper">
+              <div style="margin-bottom: 1.5rem;">
+                <div
+                  style="background: #F3F4F6; width: fit-content; padding: 0.5rem 1rem; border-radius: 99px; margin-bottom: 1rem;">
+                  <i data-lucide="users" size="16"></i> For Installers
+                </div>
+                <h3 class="heading-md">Join the Network</h3>
+                <p class="text-secondary">Get high-intent jobs sent straight to your phone.</p>
+              </div>
+
+              <form id="installer-signup-form" class="installer-form">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="fullName" required placeholder="John Doe" />
+                  </div>
+                  <div class="form-group">
+                    <label>Business Name</label>
+                    <input type="text" name="businessName" required placeholder="Sparky's Electrics" />
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required placeholder="john@example.com" />
+                  </div>
+                  <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" required placeholder="0400 000 000" />
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                  Join Now
+                </button>
+                <p class="form-status" style="margin-top: 0.5rem; font-size: 0.875rem; display: none;"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-bottom: 0;">
+      <div class="container">
+        <div
+          style="background: var(--color-text-primary); border-radius: var(--radius-xl) var(--radius-xl) 0 0; padding: var(--spacing-3xl) var(--spacing-xl); text-align: center; color: white; position: relative; overflow: hidden;">
+          <div style="position: relative; z-index: 2;">
+            <h2 class="heading-lg mb-6" style="color: white;">Ready to transform your checkout?</h2>
+            <p class="text-lg mb-8" style="color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 2rem;">
+              Join 200+ merchants offering seamless installation services today.
+            </p>
+            <a href="#" class="btn btn-white" style="padding: 1rem 2rem;">Get Started Now</a>
+          </div>
+
+          <!-- Abstract Background Shapes -->
+          <div
+            style="position: absolute; top: -50%; left: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(79,70,229,0.3) 0%, transparent 70%);">
+          </div>
+          <div
+            style="position: absolute; bottom: -50%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(16,185,129,0.2) 0%, transparent 70%);">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
 </html>
