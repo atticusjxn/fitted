@@ -83,15 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
           progress
         });
 
-        stepTexts.forEach((step, index) => {
+        stepTexts.forEach((step) => {
           step.classList.remove('active');
-          // Adjust thresholds to be more forgiving
-          if (progress >= index * 0.3 && progress < (index + 1) * 0.35) {
-            step.classList.add('active');
-          } else if (index === 2 && progress >= 0.65) {
-            step.classList.add('active');
-          }
         });
+
+        // Show step based on scroll progress
+        if (progress < 0.33) {
+          stepTexts[0]?.classList.add('active');
+        } else if (progress < 0.66) {
+          stepTexts[1]?.classList.add('active');
+        } else {
+          stepTexts[2]?.classList.add('active');
+        }
 
         updatePhoneState(progress);
       });
@@ -130,43 +133,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const prompt = document.querySelector('.demo-fitted-prompt');
       const tradieNotif = document.querySelector('.tradie-notification');
 
-      function updatePhoneState(progress) {
-        const screen2 = document.getElementById('screen-2');
-        const screen3 = document.getElementById('screen-3');
-        const prompt = document.querySelector('.demo-fitted-prompt');
-        const tradieNotif = document.querySelector('.tradie-notification');
+      // Step 2 Trigger (0.33 to 0.66)
+      if (progress >= 0.33 && progress < 0.66) {
+        screen2.style.opacity = '1';
+        screen2.style.pointerEvents = 'all';
+        prompt.classList.add('visible');
+      } else {
+        screen2.style.opacity = '0';
+        screen2.style.pointerEvents = 'none';
+        prompt.classList.remove('visible');
+      }
 
-        // Step 2 Trigger (0.3 to 0.6)
-        if (progress > 0.3 && progress <= 0.6) {
-          screen2.style.opacity = '1';
-          screen2.style.pointerEvents = 'all';
-          prompt.classList.add('visible');
-        } else if (progress > 0.6) {
-          // Transition to Step 3: Hide Step 2
-          screen2.style.opacity = '0';
-          screen2.style.pointerEvents = 'none';
-          prompt.classList.remove('visible');
-        } else {
-          // Reset (Step 1)
-          screen2.style.opacity = '0';
-          screen2.style.pointerEvents = 'none';
-          prompt.classList.remove('visible');
-        }
-
-        // Step 3 Trigger (> 0.6)
-        if (progress > 0.6) {
-          screen3.style.opacity = '1';
-          screen3.style.pointerEvents = 'all';
-          if (tradieNotif) tradieNotif.classList.add('visible');
-        } else {
-          screen3.style.opacity = '0';
-          screen3.style.pointerEvents = 'none';
-          if (tradieNotif) tradieNotif.classList.remove('visible');
-        }
+      // Step 3 Trigger (>= 0.66)
+      if (progress >= 0.66) {
+        screen3.style.transform = 'translateX(0)';
+        screen3.style.opacity = '1';
+        screen3.style.pointerEvents = 'all';
+        if (tradieNotif) tradieNotif.classList.add('visible');
+      } else {
+        screen3.style.transform = 'translateX(100%)';
+        screen3.style.opacity = '0';
+        screen3.style.pointerEvents = 'none';
+        if (tradieNotif) tradieNotif.classList.remove('visible');
       }
     }
+  }
 
-    // 5. Installer Form Handler
+  // 5. Installer Form Handler
     const form = document.getElementById('installer-signup-form');
     if (form) {
       form.addEventListener('submit', async (e) => {
