@@ -766,119 +766,136 @@ img {
 /* Mobile adjustments for demo */
 @media (max-width: 1024px) {
 
-  /* Mobile Demo Refactor */
   .demo-section {
-    height: auto;
-    /* Let content dictate height */
-    padding: 0;
-    overflow: visible;
+    min-height: 140vh !important;
+    padding: 48px 0 64px;
+    overflow: hidden;
   }
 
   .demo-sticky-wrapper {
     position: relative;
-    /* Disable global sticky on mobile */
-    top: auto;
-    height: auto;
-    display: block;
-    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
   }
 
   .demo-container {
+    position: relative;
+    width: 100%;
+    min-height: auto !important;
+    padding: 0 var(--spacing-md);
     display: flex;
     flex-direction: column;
-    /* Normal flow */
-    padding: 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
   }
 
-  /* Mobile: Sticky Phone within demo section */
   .device-frame-wrapper {
-    position: sticky !important;
-    top: 100px !important;
-    left: 0 !important;
-    transform: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 500px !important;
-    z-index: 10 !important;
+    position: relative !important;
+    top: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 92% !important;
+    max-width: 340px !important;
+    height: 420px !important;
+    z-index: 6 !important;
     display: flex !important;
     justify-content: center !important;
-    align-items: flex-start !important;
+    align-items: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     pointer-events: none !important;
     order: -1 !important;
-    margin-bottom: -400px !important;
+    margin: 8px auto 12px !important;
   }
 
   .device-frame {
-    width: 90% !important;
-    max-width: 300px !important;
-    height: 480px !important;
-    margin: 0 auto !important;
-    transform-origin: center center !important;
-    transform: scale(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
     background: white !important;
-    border-radius: 20px !important;
+    border-radius: 24px !important;
   }
 
-  /* Scrolling Text Steps - stacked with large spacing */
   .demo-text {
     position: relative !important;
-    z-index: 1 !important;
-    padding: 0 var(--spacing-md) !important;
-    padding-top: 0 !important;
     margin-top: 0 !important;
+    width: calc(100% - 2.5rem) !important;
+    max-width: 520px !important;
+    height: auto !important;
+    min-height: 260px !important;
+    z-index: 10 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 0 !important;
-    width: 100% !important;
-    max-width: none !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    scroll-snap-type: y mandatory;
+    gap: 16px;
   }
 
   .demo-step-text {
     position: relative !important;
-    min-height: 100vh !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-end !important;
-    padding-bottom: 3rem !important;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: opacity 0.5s, transform 0.5s, border-color 0.3s;
-    background: transparent !important;
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-    padding-top: 1.5rem !important;
-    border-radius: 0 !important;
-    margin-bottom: 0 !important;
-    top: auto !important;
-    left: auto !important;
-    border: none !important;
-    pointer-events: auto !important;
-    box-shadow: none !important;
     width: 100% !important;
-  }
-
-  .demo-step-text > * {
-    background: #1F2937 !important;
-    padding: 1.5rem !important;
-    border-radius: 16px !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-  }
-
-  .demo-step-text > div:first-child {
-    margin-bottom: 1rem !important;
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+    transform: translateY(16px) !important;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    background: rgba(17, 24, 39, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 18px !important;
+    padding: 1.5rem 1.5rem 1.75rem !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35) !important;
+    min-height: 280px !important;
+    z-index: 5 !important;
+    scroll-snap-align: start;
   }
 
   .demo-step-text.active {
-    opacity: 1;
-    border-color: var(--color-accent);
-    background: #111827;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+    border-color: rgba(99, 102, 241, 0.6) !important;
   }
 
-  .demo-step-text:not(.active) {
-    opacity: 0.5;
+  /* Mobile stack */
+  .demo-mobile-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 var(--spacing-md);
+  }
+
+  .mobile-step-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .mobile-step-text {
+    background: rgba(17, 24, 39, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 1.5rem;
+    color: white;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .demo-mobile-stack .device-frame {
+    height: 420px;
+    max-width: 340px;
+    width: 92%;
+  }
+
+  .demo-desktop {
+    display: none;
   }
 
   .demo-step-text h2 {
@@ -887,27 +904,6 @@ img {
 
   .demo-step-text p {
     color: #CBD5E1 !important;
-  }
-
-  /* Ensure screens are contained */
-  .device-screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  /* Force show the overlay on mobile for demo purposes */
-  .device-screen#screen-2 {
-    opacity: 1 !important;
-    pointer-events: all !important;
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .demo-fitted-prompt {
-    transform: translateY(0) !important;
   }
 
   .tradie-notification {
@@ -1101,6 +1097,106 @@ img {
 @media (max-width: 640px) {
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .device-frame-wrapper {
+    height: 60vh !important;
+    max-width: 280px !important;
+  }
+
+  .demo-text {
+    bottom: 1.5rem !important;
+  }
+}
+
+/* Demo layout visibility */
+.demo-desktop {
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-mobile-stack {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .demo-section {
+    height: auto !important;
+    padding: 48px 0 !important;
+  }
+
+  .demo-desktop {
+    display: none !important;
+  }
+
+  .demo-mobile-stack {
+    display: flex !important;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 var(--spacing-md);
+  }
+
+  .mobile-step-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .demo-mobile-stack .device-frame {
+    width: 92%;
+    max-width: 340px;
+    height: 420px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .mobile-step-text {
+    background: rgba(17, 24, 39, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 1.5rem;
+    color: white;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  /* hide desktop-specific elements on mobile */
+  .demo-text,
+  .demo-step-text,
+  .device-frame-wrapper {
+    display: none !important;
+  }
+}
+
+/* Mobile stack specifics */
+@media (max-width: 1024px) {
+  .demo-section {
+    height: auto !important;
+    padding: 32px 0 48px !important;
+  }
+
+  .demo-mobile-stack .device-frame {
+    position: relative !important;
+    display: block !important;
+    width: 92% !important;
+    max-width: 340px !important;
+    height: 460px !important;
+    overflow: hidden !important;
+    background: white !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  .demo-mobile-stack .device-screen {
+    opacity: 1 !important;
+    pointer-events: all !important;
+  }
+
+  .demo-mobile-stack {
+    gap: 24px !important;
+  }
+
+  .mobile-step-block {
+    gap: 14px !important;
   }
 }
 

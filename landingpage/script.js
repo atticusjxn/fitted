@@ -56,75 +56,59 @@ document.addEventListener('DOMContentLoaded', () => {
   const prompt = document.querySelector('.demo-fitted-prompt');
 
   if (demoSection) {
-    // Desktop Scroll Logic (Sticky)
-    if (window.innerWidth > 1024) {
-      window.addEventListener('scroll', () => {
-        const rect = demoSection.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const sectionHeight = rect.height;
+    // Skip dynamic demo logic on mobile; mobile uses static stacked blocks.
+    if (window.innerWidth <= 1024) {
+      return;
+    }
 
-        // Calculate progress: 0 when top of section hits top of viewport, 1 when bottom hits bottom
-        // We want the animation to play while the section is pinned.
-        // The section is pinned for (sectionHeight - viewportHeight) pixels.
-        // We add a small buffer to ensure it starts/ends cleanly
-        let progress = 0;
-        const scrollableDistance = sectionHeight - viewportHeight;
+    const desktopMode = () => {
+      const rect = demoSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const sectionHeight = rect.height;
+      const scrollableDistance = sectionHeight - viewportHeight;
+      const progress = scrollableDistance > 0 ? Math.max(0, Math.min(1, -rect.top / scrollableDistance)) : 0;
 
-        if (scrollableDistance > 0) {
-          progress = Math.max(0, Math.min(1, -rect.top / scrollableDistance));
-        }
+      stepTexts.forEach((step) => step.classList.remove('active'));
 
-        console.log('Scroll Debug:', {
-          scrollTop: window.scrollY,
-          rectTop: rect.top,
-          sectionHeight,
-          viewportHeight,
-          scrollableDistance,
-          progress
-        });
+      if (progress < 0.33) {
+        stepTexts[0]?.classList.add('active');
+      } else if (progress < 0.66) {
+        stepTexts[1]?.classList.add('active');
+      } else {
+        stepTexts[2]?.classList.add('active');
+      }
 
-        stepTexts.forEach((step) => {
-          step.classList.remove('active');
-        });
+      updatePhoneState(progress);
+    };
 
-        // Show step based on scroll progress
-        if (progress < 0.33) {
-          stepTexts[0]?.classList.add('active');
-        } else if (progress < 0.66) {
-          stepTexts[1]?.classList.add('active');
-        } else {
-          stepTexts[2]?.classList.add('active');
-        }
-
-        updatePhoneState(progress);
-      });
-    } else {
-      // Mobile Scroll Logic (Intersection Observer)
-      const mobileStepObserver = new IntersectionObserver((entries) => {
+    const mobileMode = () => {
+      const mobileObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Deactivate all
             stepTexts.forEach(s => s.classList.remove('active'));
-            // Activate current
             entry.target.classList.add('active');
-
-            // Update Phone State based on step
-            const stepIndex = parseInt(entry.target.dataset.step);
-            if (stepIndex === 1) updatePhoneState(0); // Reset
-            if (stepIndex === 2) updatePhoneState(0.5); // Trigger Step 2
-            if (stepIndex === 3) updatePhoneState(0.9); // Trigger Step 3
+            const stepIndex = parseInt(entry.target.dataset.step, 10);
+            if (stepIndex === 1) updatePhoneState(0);
+            if (stepIndex === 2) updatePhoneState(0.5);
+            if (stepIndex === 3) updatePhoneState(0.9);
           }
         });
-      }, { threshold: 0.6, rootMargin: "-20% 0px -20% 0px" }); // Slightly looser to catch faster scrolls
+      }, { threshold: 0.5, rootMargin: "-10% 0px -30% 0px" });
 
-      stepTexts.forEach(step => mobileStepObserver.observe(step));
-
-      // Force initial state if at top
-      if (window.scrollY < 100) {
+      stepTexts.forEach(step => mobileObserver.observe(step));
+      if (window.scrollY < 40) {
         updatePhoneState(0);
         stepTexts.forEach(s => s.classList.remove('active'));
         if (stepTexts[0]) stepTexts[0].classList.add('active');
       }
+    };
+
+    if (window.innerWidth > 1024) {
+      desktopMode();
+      window.addEventListener('scroll', desktopMode, { passive: true });
+      window.addEventListener('resize', desktopMode);
+    } else {
+      mobileMode();
     }
 
     function updatePhoneState(progress) {

@@ -7,9 +7,11 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   API_PORT: z
     .string()
-    .default('3001')
+    .optional()
     .transform((value) => {
-      const parsed = Number.parseInt(value, 10);
+      // Use PORT (Fly.io/Railway) or API_PORT or default to 3001
+      const portValue = value || process.env.PORT || '3001';
+      const parsed = Number.parseInt(portValue, 10);
       if (!Number.isInteger(parsed) || parsed <= 0) {
         throw new Error('API_PORT must be a positive integer');
       }

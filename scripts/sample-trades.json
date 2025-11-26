@@ -1,0 +1,38 @@
+[
+  {
+    "businessName": "Melbourne Spark Electrical",
+    "contactName": "Mike Johnson",
+    "email": "mike@melbournespark.com.au",
+    "phone": "03 9876 5432",
+    "mobile": "0412 345 678",
+    "postcodes": ["3000-3050", "3121-3130"],
+    "categories": ["lighting", "ceiling-fans"],
+    "skillScore": 65,
+    "verified": false,
+    "bio": "Licensed electrician specializing in residential lighting and fan installations"
+  },
+  {
+    "businessName": "Brisbane Install Pro",
+    "contactName": "Sarah Chen",
+    "email": "sarah@brisinstallpro.com.au",
+    "phone": "07 3456 7890",
+    "mobile": "0423 456 789",
+    "postcodes": ["4000-4100"],
+    "categories": ["lighting", "tv-mounting", "blinds-curtains"],
+    "skillScore": 55,
+    "verified": false,
+    "bio": "General handyman services including light fixtures and TV mounting"
+  },
+  {
+    "businessName": "Sydney Home Services",
+    "contactName": "Tom Williams",
+    "email": "tom@sydneyhome.com.au",
+    "phone": "02 9876 5432",
+    "mobile": "0434 567 890",
+    "postcodes": ["2000-2100"],
+    "categories": ["shelving", "mirrors", "blinds-curtains"],
+    "skillScore": 50,
+    "verified": false,
+    "bio": "All home installation services"
+  }
+]

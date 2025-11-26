@@ -13,6 +13,7 @@ import { schedulingRoutes } from './routes/scheduling.js';
 import { tradesRoutes } from './routes/trades.js';
 import { installationsRoutes } from './routes/installations.js';
 import { categoriesRoutes } from './routes/categories.js';
+import { checkoutRoutes } from './routes/checkout.js';
 
 export function buildServer(): FastifyInstance {
   const app = Fastify({
@@ -35,10 +36,15 @@ export function buildServer(): FastifyInstance {
 
       const allowedOrigins = new Set([
         'https://tryfitted.com',
-        'https://www.tryfitted.com'
+        'https://www.tryfitted.com',
+        // Development origins
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'http://127.0.0.1:5173'
       ]);
 
-      if (allowedOrigins.has(origin)) {
+      // Allow any Shopify store in development
+      if (process.env.NODE_ENV !== 'production' || allowedOrigins.has(origin) || origin.endsWith('.myshopify.com')) {
         return callback(null, true);
       }
 
@@ -56,6 +62,7 @@ export function buildServer(): FastifyInstance {
   void app.register(matchingRoutes, { prefix: '/api' });
   void app.register(schedulingRoutes, { prefix: '/api' });
   void app.register(tradesRoutes, { prefix: '/api' });
+  void app.register(checkoutRoutes, { prefix: '/api' });
   void app.register(installerRoutes);
 
   return app;

@@ -185,12 +185,13 @@ export async function action({ request }: ActionFunctionArgs) {
 
 function SectionCard({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-      <div className="flex flex-col gap-1">
-        <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
-        {description ? <p className="text-sm text-slate-600">{description}</p> : null}
+    <div className="card fade-in">
+      <div className="section-header">
+        <span className="section-eyebrow">Installations</span>
+        <h2 className="section-title">{title}</h2>
       </div>
-      <div className="mt-4 space-y-4 text-sm text-slate-700">{children}</div>
+      {description ? <p className="muted">{description}</p> : null}
+      <div className="mt-4 space-y-4 text-sm text-slate-200">{children}</div>
     </div>
   );
 }
@@ -232,29 +233,29 @@ export default function InstallationsRoute() {
           title="Products with installation toggle"
           description="Review products and enable installation. Override category, complexity, and pricing as needed."
         >
-          <div className="overflow-hidden rounded-lg border border-slate-200">
-            <table className="min-w-full divide-y divide-slate-200 text-sm">
-              <thead className="bg-slate-50 text-left text-xs uppercase text-slate-500">
+          <div className="overflow-hidden rounded-lg border border-slate-200" style={{ borderColor: 'var(--border)' }}>
+            <table className="table text-sm">
+              <thead>
                 <tr>
-                  <th className="px-4 py-3">Product</th>
-                  <th className="px-4 py-3">Install?</th>
-                  <th className="px-4 py-3">Category</th>
-                  <th className="px-4 py-3">Complexity</th>
-                  <th className="px-4 py-3">Price mode</th>
-                  <th className="px-4 py-3">Price (cents)</th>
-                  <th className="px-4 py-3"></th>
+                  <th>Product</th>
+                  <th>Install?</th>
+                  <th>Category</th>
+                  <th>Complexity</th>
+                  <th>Price mode</th>
+                  <th>Price (cents)</th>
+                  <th></th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200 bg-white">
+              <tbody>
                 {products.map((product) => {
                   const current = settingsByProduct[product.id];
                   return (
                     <tr key={product.id}>
-                      <td className="px-4 py-3">
-                        <div className="font-medium text-slate-900">{product.title}</div>
-                        <div className="text-xs text-slate-500">{product.productType ?? 'Uncategorized'}</div>
+                      <td>
+                        <div className="font-medium text-white">{product.title}</div>
+                        <div className="text-xs text-slate-400">{product.productType ?? 'Uncategorized'}</div>
                       </td>
-                      <td className="px-4 py-3">
+                      <td>
                         <input
                           type="checkbox"
                           name="enabled"
@@ -271,10 +272,10 @@ export default function InstallationsRoute() {
                           className="h-4 w-4 rounded border-slate-300 text-emerald-600"
                         />
                       </td>
-                      <td className="px-4 py-3">
+                      <td>
                         <select
                           defaultValue={current?.categoryId ?? ''}
-                          className="w-full rounded border border-slate-200 px-2 py-1 text-sm"
+                          className="w-full rounded border border-slate-200 bg-transparent px-2 py-1 text-sm text-white"
                           onChange={(e) => {
                             const formData = new FormData();
                             formData.set('intent', 'toggle-product');
@@ -294,10 +295,10 @@ export default function InstallationsRoute() {
                           ))}
                         </select>
                       </td>
-                      <td className="px-4 py-3">
+                      <td>
                         <select
                           defaultValue={current?.complexity ?? ''}
-                          className="w-full rounded border border-slate-200 px-2 py-1 text-sm"
+                          className="w-full rounded border border-slate-200 bg-transparent px-2 py-1 text-sm text-white"
                           onChange={(e) => {
                             const formData = new FormData();
                             formData.set('intent', 'toggle-product');
@@ -316,10 +317,10 @@ export default function InstallationsRoute() {
                           <option value="heavy">Heavy</option>
                         </select>
                       </td>
-                      <td className="px-4 py-3">
+                      <td>
                         <select
                           defaultValue={current?.priceMode ?? 'fixed'}
-                          className="w-full rounded border border-slate-200 px-2 py-1 text-sm"
+                          className="w-full rounded border border-slate-200 bg-transparent px-2 py-1 text-sm text-white"
                           onChange={(e) => {
                             const formData = new FormData();
                             formData.set('intent', 'toggle-product');
@@ -335,11 +336,11 @@ export default function InstallationsRoute() {
                           <option value="dynamic">Dynamic</option>
                         </select>
                       </td>
-                      <td className="px-4 py-3">
+                      <td>
                         <input
                           type="number"
                           defaultValue={current?.priceCents ?? ''}
-                          className="w-28 rounded border border-slate-200 px-2 py-1 text-sm"
+                          className="w-28 rounded border border-slate-200 bg-transparent px-2 py-1 text-sm text-white"
                           min={0}
                           onBlur={(e) => {
                             const formData = new FormData();
@@ -353,7 +354,7 @@ export default function InstallationsRoute() {
                           }}
                         />
                       </td>
-                      <td className="px-4 py-3 text-right text-xs text-slate-500">{product.handle}</td>
+                      <td className="text-right text-xs text-slate-500">{product.handle}</td>
                     </tr>
                   );
                 })}

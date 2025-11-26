@@ -11,13 +11,15 @@ export const meta: MetaFunction = () => {
 export default function IndexRoute() {
   return (
     <AdminLayout>
-      <div className="flex flex-col gap-6">
-        <div className="rounded-lg bg-white p-10 shadow-md">
-          <h1 className="text-3xl font-semibold">Welcome to Fitted Admin</h1>
-          <p className="mt-3 text-lg text-slate-600">
-            Start here to configure merchants, manage tradies, and review leads.
-          </p>
+      <div className="card card--gradient fade-in">
+        <div className="section-header">
+          <span className="section-eyebrow">Welcome</span>
+          <h1 className="section-title">Fitted Admin</h1>
         </div>
+        <p className="muted">
+          Configure merchants, manage tradies, and review leads. Everything you need to keep installation at checkout
+          running smoothly.
+        </p>
       </div>
     </AdminLayout>
   );

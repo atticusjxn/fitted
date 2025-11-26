@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { fetchTradies, type TradieResponse } from '../services/mockApi.js';
+import { fetchTradies, type TradieResponse } from '../services/api.js';
 import { postalCodeSchema, type Tradie } from '../types/index.js';
 
 type Status = 'idle' | 'loading' | 'resolved' | 'empty' | 'error';

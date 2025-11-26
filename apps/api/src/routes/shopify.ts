@@ -101,6 +101,7 @@ export async function shopifyRoutes(app: FastifyInstance) {
 
   // Debug route to view stored shop tokens in dev.
   app.get('/shopify/debug/shops', async (_req, reply) => {
-    return reply.send({ shops: store.listShopTokens() });
+    const shops = await store.listShopTokens();
+    return reply.send({ shops });
   });
 }

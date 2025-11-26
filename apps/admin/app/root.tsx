@@ -7,6 +7,7 @@ import {
   ScrollRestoration
 } from '@remix-run/react';
 import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
+import themeUrl from './styles/theme.css';
 
 export const links: LinksFunction = () => [];
 
@@ -22,6 +23,7 @@ export default function App() {
       <head>
         <Meta />
         <script src="https://cdn.tailwindcss.com" />
+        <link rel="stylesheet" href={themeUrl} />
         <Links />
       </head>
       <body>

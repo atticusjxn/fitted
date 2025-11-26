@@ -52,12 +52,12 @@ export async function exchangeCodeForToken(shop: string, code: string) {
 
   const data = (await response.json()) as { access_token: string };
 
-  store.saveShopToken({ shop, accessToken: data.access_token });
+  await store.saveShopToken({ shop, accessToken: data.access_token });
   return data.access_token;
 }
 
 export async function fetchProducts(shop: string) {
-  const token = store.getShopToken(shop);
+  const token = await store.getShopToken(shop);
   if (!token) {
     throw new Error('No access token for this shop. Install the app first.');
   }
@@ -81,7 +81,7 @@ export async function fetchProducts(shop: string) {
 }
 
 export async function fetchCollections(shop: string) {
-  const token = store.getShopToken(shop);
+  const token = await store.getShopToken(shop);
   if (!token) {
     throw new Error('No access token for this shop. Install the app first.');
   }

@@ -1,0 +1,17 @@
+{
+  "command": "createComposition",
+  "args": {
+    "name": "Fitted Explainer",
+    "width": 1920,
+    "height": 1080,
+    "duration": 45,
+    "frameRate": 30,
+    "backgroundColor": {
+      "r": 230,
+      "g": 230,
+      "b": 245
+    }
+  },
+  "timestamp": "2025-11-23T14:07:45.436Z",
+  "status": "pending"
+}

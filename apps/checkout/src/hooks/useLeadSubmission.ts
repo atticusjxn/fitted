@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { submitLead, type LeadSubmissionResult } from '../services/mockApi.js';
+import { submitLead, type LeadSubmissionResult } from '../services/api.js';
 import type { LeadFormValues } from '../types/index.js';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';

@@ -40,6 +40,7 @@
     "vitest": "^4.0.6"
   },
   "dependencies": {
+    "claude": "^0.1.1",
     "lucide-react": "^0.552.0"
   }
 }

@@ -32,7 +32,7 @@ export async function billingRoutes(app: FastifyInstance) {
     const setupIntent = await createSetupIntent(parsed.data.customerId);
 
     // Persist billing profile with at least customer linkage.
-    store.upsertBillingProfile({
+    await store.upsertBillingProfile({
       tradieId: parsed.data.tradieId,
       stripeCustomerId: parsed.data.customerId
     });
@@ -70,7 +70,7 @@ export async function billingRoutes(app: FastifyInstance) {
       const requiresAuth = paymentIntent.status === 'requires_action';
 
       // Persist billing profile default PM and auth flag.
-      store.upsertBillingProfile({
+      await store.upsertBillingProfile({
         tradieId: parsed.data.tradieId,
         stripeCustomerId: parsed.data.customerId,
         defaultPaymentMethodId: parsed.data.paymentMethodId,
@@ -78,7 +78,7 @@ export async function billingRoutes(app: FastifyInstance) {
       });
 
       // Persist lead payment record.
-      store.upsertLeadPayment({
+      await store.upsertLeadPayment({
         leadId,
         tradieId: parsed.data.tradieId,
         paymentIntentId: paymentIntent.id,
@@ -105,7 +105,7 @@ export async function billingRoutes(app: FastifyInstance) {
       const code = stripeError?.code;
 
       // Persist failed attempt for visibility.
-      store.upsertLeadPayment({
+      await store.upsertLeadPayment({
         leadId,
         tradieId: parsed.success ? parsed.data.tradieId : 'unknown',
         paymentIntentId: stripeError?.payment_intent?.id ?? 'unknown',

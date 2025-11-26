@@ -73,7 +73,7 @@ function withinAWeek(nextAvailableAt: string | null | undefined) {
 
 async function fetchCandidates(categoryId: string, leadPostcode?: string) {
   const { data: skills, error: skillsError } = await supabase
-    .from<TradeSkillRow>('trade_skills')
+    .from('trade_skills')
     .select('trade_id, category_id, score')
     .eq('category_id', categoryId);
 
@@ -86,15 +86,15 @@ async function fetchCandidates(categoryId: string, leadPostcode?: string) {
 
   const [{ data: scheduling }, { data: serviceAreas }, { data: credentials }] = await Promise.all([
     supabase
-      .from<SchedulingRow>('trade_scheduling_connections')
+      .from('trade_scheduling_connections')
       .select('trade_id, next_available_at, booking_url')
       .in('trade_id', tradeIds),
     supabase
-      .from<ServiceAreaRow>('service_areas')
+      .from('service_areas')
       .select('trade_id, postcode_start, postcode_end')
       .in('trade_id', tradeIds),
     supabase
-      .from<CredentialRow>('trade_credentials')
+      .from('trade_credentials')
       .select('trade_id, verified')
       .eq('verified', true)
       .in('trade_id', tradeIds)
@@ -135,7 +135,7 @@ export async function simulateMatch(categoryId: string, postcode?: string) {
 
 export async function matchLeadToTrades(leadId: string) {
   const { data: lead, error: leadError } = await supabase
-    .from<LeadRow>('leads')
+    .from('leads')
     .select('id, category_id, payload_json')
     .eq('id', leadId)
     .maybeSingle();
