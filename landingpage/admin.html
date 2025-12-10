@@ -545,10 +545,11 @@
         const ADMIN_USERNAME = 'admin';
         const ADMIN_PASSWORD = '123456';
 
-        // Supabase client (you'll need to add your credentials)
+        // Supabase client
         const SUPABASE_URL = 'https://hfsyxmlgkqhtsjrwazai.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhmc3l4bWxna3FodHNqcndhemasIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMzNDEyMjUsImV4cCI6MjA0ODkxNzIyNX0.HMrqk8BqPpdvTPQjBMtcXqgr96snRE6IiX6DyExCQ_c';
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { createClient } = window.supabase;
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let serviceAreasData = [];
         let currentLogoFile = null;
