@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Fitted - Installer Signup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-accent: #10B981;
+            --color-text-primary: #111827;
+            --color-text-secondary: #6B7280;
+            --color-text-tertiary: #9CA3AF;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-card);
+            max-width: 600px;
+            width: 100%;
+            padding: 48px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .benefits {
+            background: #F3F4F6;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .benefits h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .benefit-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .benefit-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .benefit-text {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            background: #D1D5DB;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-status {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .form-status.success {
+            background: #DEF7EC;
+            color: #03543F;
+            display: block;
+        }
+
+        .form-status.error {
+            background: #FEE2E2;
+            color: #991B1B;
+            display: block;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .back-link a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link a:hover {
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 640px) {
+            .signup-container {
+                padding: 32px 24px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="logo">
+            <img src="./assets/images/fittedlogoblack.png" alt="Fitted">
+        </div>
+
+        <h1>Join Fitted</h1>
+        <p class="subtitle">Get high-intent installation jobs delivered straight to you</p>
+
+        <div class="benefits">
+            <h3>Why Join?</h3>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <div class="benefit-text"><strong>Pre-qualified leads:</strong> Customers have already purchased and need installation</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <div class="benefit-text"><strong>No bidding:</strong> You set your rates, we match you with nearby customers</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <div class="benefit-text"><strong>Flexible work:</strong> Accept or decline jobs based on your schedule</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <div class="benefit-text"><strong>Get paid faster:</strong> Direct payment from customers, no platform fees</div>
+            </div>
+        </div>
+
+        <form id="installer-signup-form">
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="John Smith">
+            </div>
+
+            <div class="form-group">
+                <label for="businessName">Business Name *</label>
+                <input type="text" id="businessName" name="businessName" required placeholder="Smith Electrical Services">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="john@smithelectrical.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="0400 000 000">
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile (if different)</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="0400 000 000">
+            </div>
+
+            <div class="form-group">
+                <label for="servicesOffered">Services Offered (Optional)</label>
+                <textarea id="servicesOffered" name="servicesOffered" placeholder="e.g., Electrical installations, lighting, ceiling fans, appliance installations..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">Submit Application</button>
+
+            <div class="form-status" id="formStatus"></div>
+        </form>
+
+        <div class="back-link">
+            <a href="./index.html">← Back to homepage</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('installer-signup-form');
+        const status = document.getElementById('formStatus');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const data = {
+                fullName: formData.get('fullName'),
+                businessName: formData.get('businessName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                mobile: formData.get('mobile') || formData.get('phone'),
+                source: 'signup-page'
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            status.className = 'form-status';
+            status.textContent = '';
+
+            try {
+                const response = await fetch('https://fitted-api.fly.dev/installers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    status.className = 'form-status success';
+                    status.textContent = 'Thanks for registering! We\'ll be in touch within 24-48 hours to confirm your coverage areas and get you set up.';
+                    form.reset();
+                } else {
+                    throw new Error('Failed to submit');
+                }
+            } catch (error) {
+                status.className = 'form-status error';
+                status.textContent = 'Sorry, something went wrong. Please try again or email us at installers@tryfitted.com';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            }
+        });
+    </script>
+</body>
+</html>

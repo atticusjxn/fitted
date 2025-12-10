@@ -29,27 +29,8 @@ export function buildServer(): FastifyInstance {
   });
   void app.register(helmet);
   void app.register(cors, {
-    origin: (origin, callback) => {
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      const allowedOrigins = new Set([
-        'https://tryfitted.com',
-        'https://www.tryfitted.com',
-        // Development origins
-        'http://localhost:3000',
-        'http://localhost:5173',
-        'http://127.0.0.1:5173'
-      ]);
-
-      // Allow any Shopify store in development
-      if (process.env.NODE_ENV !== 'production' || allowedOrigins.has(origin) || origin.endsWith('.myshopify.com')) {
-        return callback(null, true);
-      }
-
-      callback(new Error('Not allowed by CORS'), false);
-    }
+    origin: true, // Allow all origins for checkout extensions
+    credentials: true
   });
   void app.register(sensible);
 
