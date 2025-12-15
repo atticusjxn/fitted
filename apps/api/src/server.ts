@@ -7,6 +7,7 @@ import { healthRoutes } from './routes/health.js';
 import { billingRoutes } from './routes/billing.js';
 import { stripeWebhookRoutes } from './routes/stripe-webhook.js';
 import { shopifyRoutes } from './routes/shopify.js';
+import { shopifyWebhookRoutes } from './routes/shopify-webhooks.js';
 import { installerRoutes } from './routes/installers.js';
 import { matchingRoutes } from './routes/matching.js';
 import { schedulingRoutes } from './routes/scheduling.js';
@@ -39,6 +40,7 @@ export function buildServer(): FastifyInstance {
   void app.register(billingRoutes, { prefix: '/api' });
   void app.register(stripeWebhookRoutes, { prefix: '/api' });
   void app.register(shopifyRoutes, { prefix: '/api' });
+  void app.register(shopifyWebhookRoutes, { prefix: '/api' });
   void app.register(categoriesRoutes, { prefix: '/api' });
   void app.register(installationsRoutes, { prefix: '/api' });
   void app.register(matchingRoutes, { prefix: '/api' });

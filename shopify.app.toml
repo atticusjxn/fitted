@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "55cff46b87909fddd4280d1a41253bbd"
+name = "Fitted"
+application_url = "https://tryfitted.com/merchant/dashboard.html"
+embedded = true
+
+[webhooks]
+api_version = "2025-01"
+
+[[webhooks.subscriptions]]
+compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
+uri = "https://tryfitted.com/api/webhooks/shopify"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_products,read_orders,read_customers"
+optional_scopes = [ ]
+use_legacy_install_flow = false
+
+[auth]
+redirect_urls = [
+  "https://tryfitted.com/merchant/dashboard.html",
+  "https://tryfitted.com/auth/callback"
+]
+
+[pos]
+embedded = true
