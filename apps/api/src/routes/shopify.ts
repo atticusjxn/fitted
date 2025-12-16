@@ -50,7 +50,10 @@ export async function shopifyRoutes(app: FastifyInstance) {
 
     try {
       const token = await exchangeCodeForToken(shop, code);
-      return reply.send({ ok: true, shop, token });
+
+      // Redirect to the embedded app with the shop parameter
+      const redirectUrl = `https://admin.shopify.com/store/${shop.replace('.myshopify.com', '')}/apps/${process.env.SHOPIFY_API_KEY || '55cff46b87909fddd4280d1a41253bbd'}`;
+      return reply.redirect(redirectUrl);
     } catch (err) {
       app.log.error({ err }, 'Shopify token exchange failed');
       return reply.status(500).send('Failed to exchange token');

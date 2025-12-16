@@ -16,6 +16,7 @@ import { installationsRoutes } from './routes/installations.js';
 import { categoriesRoutes } from './routes/categories.js';
 import { checkoutRoutes } from './routes/checkout.js';
 import { merchantRoutes } from './routes/merchants.js';
+import { embeddedAppRoutes } from './routes/embedded-app.js';
 
 export function buildServer(): FastifyInstance {
   const app = Fastify({
@@ -29,7 +30,13 @@ export function buildServer(): FastifyInstance {
     global: false,
     runFirst: true
   });
-  void app.register(helmet);
+  void app.register(helmet, {
+    contentSecurityPolicy: {
+      directives: {
+        'frame-ancestors': ["'self'", 'https://*.myshopify.com', 'https://admin.shopify.com']
+      }
+    }
+  });
   void app.register(cors, {
     origin: true, // Allow all origins for checkout extensions
     credentials: true
@@ -49,6 +56,9 @@ export function buildServer(): FastifyInstance {
   void app.register(checkoutRoutes, { prefix: '/api' });
   void app.register(merchantRoutes, { prefix: '/api' });
   void app.register(installerRoutes);
+
+  // Embedded app UI (must be registered last, serves root path)
+  void app.register(embeddedAppRoutes);
 
   return app;
 }

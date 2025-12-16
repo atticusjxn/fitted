@@ -1,7 +1,8 @@
 import { tradieSchema, type LeadFormValues, type Tradie } from '../types/index.js';
 
-// API base URL - configurable via environment
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+// API base URL - uses production URL for Shopify extension
+// For local development playground, you can override this in dev/main.tsx
+const API_BASE_URL = 'https://tryfitted.com/api';
 
 export type TradieResponse =
   | { status: 'ok'; tradies: Tradie[] }
