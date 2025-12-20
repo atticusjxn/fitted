@@ -67,6 +67,8 @@ export async function embeddedAppRoutes(app: FastifyInstance) {
     <script>
         // Initialize Shopify App Bridge
         var AppBridge = window['app-bridge'];
+        var merchantData = null;
+
         if (AppBridge) {
             var createApp = AppBridge.default;
             var app = createApp({
@@ -75,15 +77,38 @@ export async function embeddedAppRoutes(app: FastifyInstance) {
             });
             console.log('Shopify App Bridge initialized', app);
 
-            // Get session token for authenticated API requests
+            // Get session token and verify with backend
             var utils = AppBridge.actions;
             if (utils && utils.getSessionToken) {
                 utils.getSessionToken(app).then(function(token) {
                     console.log('Session token retrieved');
-                    // Store token for API requests
                     window.sessionToken = token;
+
+                    // Verify session and get/create merchant
+                    return fetch('/api/merchants/session', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                }).then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Session verification failed');
+                    }
+                    return response.json();
+                }).then(function(data) {
+                    console.log('Merchant session verified:', data);
+                    merchantData = data.merchant;
+
+                    // Store shop domain for future API calls
+                    window.shopDomain = merchantData.shopDomain;
+
+                    // Update UI with merchant data if needed
+                    console.log('Shop domain:', merchantData.shopDomain);
+                    console.log('Settings:', merchantData.settings);
                 }).catch(function(err) {
-                    console.error('Failed to get session token:', err);
+                    console.error('Failed to verify session:', err);
                 });
             }
         }
